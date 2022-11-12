@@ -7,8 +7,6 @@
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
-USE financeiro;
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -28,6 +26,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `endereco`
 --
+CREATE DATABASE financeiro;
+
+USE financeiro;
 
 CREATE TABLE `endereco` (
   `end_id` int(11) NOT NULL,
