@@ -18,7 +18,6 @@ body {
     font-weight: 600 !important;
     color: #030c4c;
     margin-top: 10px;
-
 }
 
 label {
@@ -66,5 +65,33 @@ form {
     color: #030c4c;
 }
 
+ .btn-primary {
+    background-color: #030c4c;
+    color: #ebeff0;
+    border-radius: 10px;
+    width: 30%;
+    border-width: 1px 1px 1px 1px #030c4c;
+    margin:  0 15px 0 0px;
+}
 
+.btn:hover{
+    background-color: #5f95e7;
+    color: #030c4c;
+}
 
+.img-fluid{
+    padding-top: 80px;
+}
+
+.btn-secondary{
+    background-color: #014ba0;
+    color: #ebeff0;
+    border-radius: 10px;
+    width: 30%;
+    border-width: 1px 1px 1px 1px #030c4c;
+    margin:  0 15px 0 0px;
+}
+
+.img{
+    padding-top:5px ;
+}
