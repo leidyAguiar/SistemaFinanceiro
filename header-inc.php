@@ -3,7 +3,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,7 @@ session_start();
     <div class="collapse navbar-collapse" id="navbarText">
       
         <a class="nav-link" href="login.php"><h2>Login</h2></a>
+        <a class="nav-link" href="register.php"><h2>Cadastre-se</h2></a>
             
     </div>
 </nav>
