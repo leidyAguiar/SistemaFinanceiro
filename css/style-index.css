@@ -1,13 +1,19 @@
 img{
     
- border-radius: 50%;
- display: block;
- margin-left:20%;
- margin-right: auto;
- margin-top: 5%;
-
-}
-
-h1{
-    font-family: "Sofia", sans-serif;
-  }
+  border-radius: 50%;
+  display: block;
+  margin-left:30%;
+  margin-right: auto;
+  margin-top: 3%;
+ 
+ }
+ 
+ h2{
+    font-family: 'Poppins', sans-serif;
+    
+   }
+ 
+ body{
+   background-image: linear-gradient(Royalblue, DeepSkyBlue, white);
+ }  
+ 
