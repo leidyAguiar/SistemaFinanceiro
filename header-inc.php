@@ -21,6 +21,7 @@ session_start();
     <div class="collapse navbar-collapse" id="navbarText">
       
         <a class="nav-link" href="login.php"><h2>Login</h2></a>
+        <a class="nav-link" href="login.php"><h2>Cadastre-se</h2></a>
             
     </div>
 </nav>
