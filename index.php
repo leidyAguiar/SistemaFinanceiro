@@ -8,28 +8,16 @@
     <title>Document</title>
 </head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
 <body>
 <?php
-require("header-inc.php"); ?>
-<?php
-$nome = 'Evandro';
+     require("header-inc.php"); 
 ?>
-
-<h1>Bem vindo <?php echo $nome ?> ao NuAzul!</h1>
-
-
-
-<div class='figura'>
+<div>
     <figure>
     <img src="img/logo.png" class="img-fluid" alt="Responsive image">
     </figure>
 </div>
-
-<div> 
-
-    <button type="button" class="btn btn-primary btn-lg" border-radius='20%;'>Large button</button>
-</div>
-
-<?php require("footer.inc.php"); ?>
 </body>
+<?php require("footer.inc.php"); ?>
 </html>
