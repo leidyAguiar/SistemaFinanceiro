@@ -17,31 +17,37 @@ nav {
     width: 100%;
     font-weight: 500;
     padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
 }
 
 label.logo {
-
-    line-height: 100px;
+    line-height: 80px;
     padding: 0 20px;
 }
 
 nav ul {
-    float: right;
-    margin-right: 20px;
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    align-items: center;
 }
 
-nav ul li {
-    display: inline-block;
-    line-height: 80px;
-    margin: 0 5px;
-}
 
 nav ul li a {
     color: white;
-    font-size: 35px;
+    font-size: 24px;
     padding: 7px 13px;
     border-radius: 3px;
    
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
 }
 
 a.active,
@@ -72,7 +78,6 @@ body{
 main{
     display: flex;
     flex-direction: row;
-    margin: 100px 50px 50px 500px;
 }
 
 h2{
