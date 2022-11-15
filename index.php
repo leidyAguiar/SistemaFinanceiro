@@ -12,9 +12,9 @@ require_once("config.php");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!--CSS-->
-     <link rel="stylesheet" type="text/css" href="./css/style.index.css">
-     <!--Icon-->
-     <link href="./img/dolar.png" rel="shortcut icon" type= "image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/style.index.css">
+    <!--Icon-->
+    <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>
@@ -34,13 +34,7 @@ require_once("config.php");
             <p>NuAzul foi desenvolvida para você, que deseja dar um Up em sua vida financeira, organizando suas contas com um sistema que atende as suas necessidades</p>
         </aside>
         <img src="./img/home.png" alt="">
-
     </main>
-
-   
-            </div>
-        </div>
-    </div>
 
 </body>
 

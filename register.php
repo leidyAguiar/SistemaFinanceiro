@@ -1,4 +1,3 @@
-
 <?php
 require_once("config.php");
 ?>
@@ -16,14 +15,14 @@ require_once("config.php");
     <!--CSS-->
     <link href="./css/style.css" rel="stylesheet">
     <!--Icon-->
-    <link href="./img/dolar.png" rel="shortcut icon" type= "image/x-icon">
+    <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>
     <div class="container">
         <div class="row content">
             <div class="col-md-6 mb-3">
-                    <img src="./img/imgRegister2.png" class="img-fluid" alt="image">
+                <img src="./img/imgRegister2.png" class="img-fluid" alt="image">
             </div>
             <div class="col-md-6">
                 <h3 class="signin-text mb-3"> Criar Conta</h3>
