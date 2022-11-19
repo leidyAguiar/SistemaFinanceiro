@@ -96,6 +96,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
+<?php
+require_once("config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
