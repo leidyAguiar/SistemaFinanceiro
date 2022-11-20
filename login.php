@@ -1,77 +1,77 @@
 <?php
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: index.php");
     exit;
 }
 
 // Include config file
 require_once("connection.php");
- 
+
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
- 
+
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     // Check if username is empty
-    if(empty(trim($_POST["username"]))){
+    if (empty(trim($_POST["username"]))) {
         $username_err = "Por favor, digite o usuário.";
-    } else{
+    } else {
         $username = trim($_POST["username"]);
     }
-    
+
     // Check if password is empty
-    if(empty(trim($_POST["senha"]))){
+    if (empty(trim($_POST["senha"]))) {
         $password_err = "Por favor, digite a senha.";
-    } else{
+    } else {
         $password = trim($_POST["senha"]);
     }
-    
+
     // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+    if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
         $sql = "SELECT uso_id, uso_nome, uso_senha  FROM usuario WHERE uso_nome = ?";
-        
-        if($stmt = mysqli_prepare($conn, $sql)){
+
+        if ($stmt = mysqli_prepare($conn, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
+
             // Set parameters
             $param_username = $username;
-            
+
             // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
+            if (mysqli_stmt_execute($stmt)) {
                 // Store result
                 mysqli_stmt_store_result($stmt);
-                
+
                 // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
+                    if (mysqli_stmt_fetch($stmt)) {
+                        if (password_verify($password, $hashed_password)) {
                             // Password is correct, so start a new session
                             session_start();
-                            
+
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["uso_id"] = $id;
-                            $_SESSION["uso_nome"] = $username;                            
-                            
+                            $_SESSION["uso_nome"] = $username;
+
                             // Redirect user to welcome page
                             header("location: home.php");
-                        } else{
+                        } else {
                             // Password is not valid, display a generic error message
                             $login_err = "Usuário ou senha incorretos.";
                         }
                     }
-                } else{
+                } else {
                     // Username doesn't exist, display a generic error message
                     $login_err = "Usuário ou senha incorretos.";
                 }
-            } else{
+            } else {
                 echo "Oops! Algo deu errado. Por favor, tente novamente mais tarde.";
             }
 
@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
     }
-    
+
     // Close connection
     mysqli_close($conn);
 }
@@ -107,6 +107,17 @@ require_once("config.php");
 </head>
 
 <body>
+
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo"><img src="./img/logoBranca3.png" alt=""></label>
+        <ul>
+            <li><a href="./index.php">Sair</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <div class="row content">
             <div class="col-md-6 mb-3">

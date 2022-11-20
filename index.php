@@ -31,7 +31,7 @@ require_once("config.php");
     <main class="align-content-center d-flex justify-content-center p-5">
         <aside>
             <h2>Sejam bem-vindos e conheçam NuAzul</h2>
-            <p>NuAzul foi desenvolvida para você, que deseja dar um Up em sua vida financeira, organizando suas contas com um sistema que atende as suas necessidades</p>
+            <p>NuAzul foi desenvolvido para você, que deseja dar um Up em sua vida financeira, organizando suas contas com um sistema que atende as suas necessidades</p>
         </aside>
         <img src="./img/home.png" alt="">
     </main>

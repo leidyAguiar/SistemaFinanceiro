@@ -2,13 +2,13 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #5f95e7;
+    background-color: #bbd5f9;
 }
 
 .content {
-    margin: 8%;
-    background-color: #fff;
-    padding: 4rem 1rem 4rem 1rem;
+    margin: 5%;
+    background-color: #ffffff;
+    padding: 4rem 4rem 3rem 4rem;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, .05);
     border-radius: 20px;
 }
@@ -97,3 +97,61 @@ form {
     border-radius: 50px;
 }
 
+nav {
+    background: #030c4c;
+    height: 80px;
+    width: 100%;
+    font-weight: 500;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+label.logo {
+    line-height: 80px;
+    padding: 0 20px;
+}
+
+nav ul {
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    align-items: center;
+}
+
+
+nav ul li a {
+    color: white;
+    font-size: 24px;
+    padding: 7px 13px;
+    border-radius: 3px;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+}
+
+a.active,
+a:hover {
+    background:#5f95e7;
+    color:#030c4c;
+    transition: .5s;
+}
+
+.checkbtn {
+    font-size: 40px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
