@@ -120,6 +120,11 @@ require_once("config.php");
     </nav>
     <div class="container">
         <div class="row content">
+        <?php 
+        if(!empty($login_err)){
+            echo '<div class="alert alert-danger">' . $login_err . '</div>';
+        }        
+        ?>
             <div class="col-md-6 mb-3">
                 <img src="./img/LogoNuAzulMaior.png" class="img-fluid" alt="image">
             </div>

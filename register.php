@@ -140,77 +140,17 @@ require_once("config.php");
                 <form method="post">
                     <div>
                         <label for="login">Usuário</label>
-                        <input type="text" placeholder="Nome" name="username" class="form-control" id="login">
+                        <input type="text" name="username" class="form-control" id="login">
                     </div>
                     <br></br>
                     <div>
                         <label for="senha">Senha</label>
-                        <input type="password" placeholder=" Mínimo 6 dígitos" name="senha" class="form-control" id="senha">
+                        <input type="password" name="senha" class="form-control" id="senha">
                     </div>
                     <br></br>
                     <div>
                         <label for="senha">Confirme sua senha</label>
-                        <input type="password" placeholder=" Mínimo 6 dígitos" name="confirma_senha" class="form-control" id="senha">
-                    </div>
-                    
-                    <br></br>
-                    <div>
-                        <label for="cep">CEP</label>
-                        <input type="text" placeholder="87624-457" name="cep" class="form-control" id="cep">
-                    </div>
-                    <br></br>
-                    <div>
-                        <label for="cidade">Cidade</label>
-                        <input type="text" placeholder="Cidade" name="cidade" class="form-control" id="cidade">
-                    </div>
-                    <br></br>
-                    <div>
-                        <label for="cep">Logradouro</label>
-                        <input type="text" placeholder="Rua Joaquim" name="logradouro" class="form-control" id="logradouro">
-                    </div>
-                    <br></br>
-                    <div>
-                        <label for="bairro">Bairro</label>
-                        <input type="text" placeholder="Bairro" name="bairro" class="form-control" id="bairro">
-                    </div>
-                    <br></br>
-                    <div>
-                        <label for="numero">Número</label>
-                        <input type="text" placeholder="102" name="numero" class="form-control" id="numero">
-                    </div>
-                    <br></br>
-                    <div>
-                        <label for="uf">Estado</label>
-                        <select name="estado" id="uf">
-                            <option value="0"> Escolha seu estado</option>
-                            <option value="ac">Acre</option>
-                            <option value="al">Alagoas</option>
-                            <option value="am">Amazonas</option>
-                            <option value="ap">Amapá</option>
-                            <option value="ba">Bahia</option>
-                            <option value="ce">Ceará</option>
-                            <option value="df">Distrito Federal</option>
-                            <option value="es">Espírito Santo</option>
-                            <option value="go">Goiás</option>
-                            <option value="ma">Maranhão</option>
-                            <option value="mt">Mato Grosso</option>
-                            <option value="ms">Mato Grosso do Sul</option>
-                            <option value="mg">Minas Gerais</option>
-                            <option value="pa">Pará</option>
-                            <option value="pb">Paraíba</option>
-                            <option value="pr">Paraná</option>
-                            <option value="pe">Pernambuco</option>
-                            <option value="pi">Piauí</option>
-                            <option value="rj">Rio de Janeiro</option>
-                            <option value="rn">Rio Grande do Norte</option>
-                            <option value="ro">Rondônia</option>
-                            <option value="rs">Rio Grande do Sul</option>
-                            <option value="rr">Roraima</option>
-                            <option value="sc">Santa Catarina</option>
-                            <option value="se">Sergipe</option>
-                            <option value="sp">São Paulo</option>
-                            <option value="to">Tocantins</option>
-                        </select>
+                        <input type="password" name="confirma_senha" class="form-control" id="senha">
                     </div>
                     <br></br>
                     <div class="form-group">
