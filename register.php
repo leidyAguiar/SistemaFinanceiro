@@ -129,16 +129,19 @@ require_once("config.php");
                     <div>
                         <label for="login">Usuário</label>
                         <input type="text" name="username" class="form-control" id="login">
+                        <span class="invalid-feedback"><?php echo $username_err; ?></span>
                     </div>
                     <br></br>
                     <div>
                         <label for="senha">Senha</label>
                         <input type="password" name="senha" class="form-control" id="senha">
+                        <span class="invalid-feedback"><?php echo $password_err; ?></span>
                     </div>
                     <br></br>
                     <div>
                         <label for="senha">Confirme sua senha</label>
                         <input type="password" name="confirma_senha" class="form-control" id="senha">
+                        <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
                     </div>
                     <br></br>
                     <div class="form-group">
