@@ -36,7 +36,9 @@ CREATE TABLE `endereco` (
   `end_num` int(11) NOT NULL,
   `end_bairro` varchar(50) NOT NULL,
   `end_logradouro` varchar(50) NOT NULL,
-  `end_cep` varchar(9) NOT NULL
+  `end_cep` varchar(9) NOT NULL,
+  `end_cidade` varchar(50) NOT NULL,
+  `end_uf` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
