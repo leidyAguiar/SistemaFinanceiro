@@ -84,16 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row content">
             <div class="col-md-6 mb-3">
-                <img src="./img/imgRegister2.png" class="img-fluid" alt="image">
+                <img src="./img/alterar.png" class="img-fluid" alt="image">
             </div>
             <div class="col-md-6">
                 <h2 class="signin-text mb-3"> Alterar Dados Cadastrais</h2>
-                <p>Por favor, preencha os campos do formulário para alterar os dados cadastrais...</p>
-                <br>
+                <p>Por favor, preencha os campos do formulário para alterar os dados cadastrais</p>
                 <div>
                     <form method="post">
                         <div>
-                            <label for="login">Usuário*</label>              
+                            <label for="login">Usuário</label>              
                             <input type="text" name="username" id="login" class="form-control" readonly value="<?php echo $username; ?>">
                             <span class="invalid-feedback"><?php echo $username_err; ?></span>
                         </div>
@@ -110,30 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
                         </div>
                         </br>
-                        </br>
                         <div>
-                            <label for="cep">CEP</label>
-                            <input type="text" placeholder="87624-457" name="cep" id="cep" class="form-control" value="<?php echo $cep; ?>">
-                        </div>
-                        </br>
-                        <div>
-                            <label for="cidade">Cidade</label>
-                            <input type="text" placeholder="Cidade" name="cidade" id="cidade" class="form-control" value="<?php echo $cidade; ?>">
-                        </div>
-                        </br>
-                        <div>
-                            <label for="logradouro">Logradouro</label>
-                            <input type="text" placeholder="Rua Joaquim" name="logradouro" id="logradouro" class="form-control" value="<?php echo $logradouro; ?>">
-                        </div>
-                        </br>
-                        <div>
-                            <label for="bairro">Bairro</label>
-                            <input type="text" placeholder="Bairro" name="bairro" id="bairro" class="form-control" value="<?php echo $bairro; ?>">
-                        </div>
-                        </br>
-                        <div>
-                            <label for="numero">Número</label>
-                            <input type="text" placeholder="102" name="numero" class="form-control" id="numero" value="<?php echo $numero; ?>">
+                            <label for="login">E-mail*</label>
+                            <input type="email" name="email" class="form-control" id="email" required>
                         </div>
                         </br>
                         <div>
@@ -169,6 +147,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="to" <?= $uf === "to" ? "selected" : "" ?>>Tocantins</option>
                             </select>
                         </div>
+                        </br>
+                        <div>
+                            <label for="cep">CEP</label>
+                            <input type="text" placeholder="87624-457" name="cep" id="cep" class="form-control" value="<?php echo $cep; ?>">
+                        </div>
+                        </br>
+                        <div>
+                            <label for="cidade">Cidade</label>
+                            <input type="text" placeholder="Cidade" name="cidade" id="cidade" class="form-control" value="<?php echo $cidade; ?>">
+                        </div>
+                        </br>
+                        <div>
+                            <label for="logradouro">Logradouro</label>
+                            <input type="text" placeholder="Rua Joaquim" name="logradouro" id="logradouro" class="form-control" value="<?php echo $logradouro; ?>">
+                        </div>
+                        </br>
+                        <div>
+                            <label for="numero">Número</label>
+                            <input type="text" placeholder="102" name="numero" class="form-control" id="numero" value="<?php echo $numero; ?>">
+                        </div>
+                        </br>
+                        <div>
+                            <label for="bairro">Bairro</label>
+                            <input type="text" placeholder="Bairro" name="bairro" id="bairro" class="form-control" value="<?php echo $bairro; ?>">
+                        </div>
+                        </br>
                         </br>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Enviar">

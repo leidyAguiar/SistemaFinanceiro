@@ -125,7 +125,7 @@ require_once("config.php");
             </div>
             <div class="col-md-6">
                 <h2 class="signin-text mb-3"> Criar Conta</h2>
-                <p>Por favor, preencha os campos do formulário para criar a sua conta.</p>
+                <p>Por favor, preencha os campos do formulário para criar a sua conta</p>
                 
                 <div>
                     <form method="post">
@@ -150,11 +150,6 @@ require_once("config.php");
                         <div>
                             <label for="login">E-mail*</label>
                             <input type="email" placeholder="email@gmail.com" name="email" class="form-control" id="email" required>
-                        </div>
-                        </br>
-                        <div>
-                            <label for="cep">CEP*</label>
-                            <input type="text" placeholder="87624-457" name="cep" class="form-control" id="cep" required>
                         </div>
                         </br>
                         <div>
@@ -189,6 +184,11 @@ require_once("config.php");
                                 <option value="sp">São Paulo</option>
                                 <option value="to">Tocantins</option>
                             </select>
+                        </div>
+                        </br>
+                        <div>
+                            <label for="cep">CEP*</label>
+                            <input type="text" placeholder="87624-457" name="cep" class="form-control" id="cep" required>
                         </div>
                         </br>
                         <div>
