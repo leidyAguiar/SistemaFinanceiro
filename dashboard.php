@@ -24,7 +24,7 @@ require_once("config.php");
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href=""><span class="las la-home"></span>
+                    <a href="" class="active"><span class="las la-home"></span>
                     <span>Dashboard</span>
                 </li>
                 <li>
@@ -55,7 +55,7 @@ require_once("config.php");
             </div>
 
             <div class="user-wrapper">
-                <img scr="./img/user.png" width="40px" height="40px" alt="">
+                <label><img src="./img/man.png" width="60px" height="60px" alt=""></label>
                 <small>Administrador</small>
             </div>
         </header>
