@@ -110,12 +110,12 @@ require_once("config.php");
                 <form method="post">
                     <div>
                         <label for="login">Usuário</label>
-                        <input type="text" name="username" class="form-control" id="login">
+                        <input type="text" name="username" class="form-control" id="login" required>
                     </div>
                     <br></br>
                     <div>
                         <label for="senha">Senha</label>
-                        <input type="password" name="senha" class="form-control" id="senha">
+                        <input type="password" name="senha" class="form-control" id="senha" required>
                     </div>
                     <br></br>
                     <div class="form-group from-check">

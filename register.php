@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("location: login.php");
                     } else {
                         echo "Algo deu errado. Por favor, tente novamente mais tarde.";
-                    }         
+                    }
                     mysqli_stmt_close($stmt);
                 }
             } else {
@@ -126,56 +126,40 @@ require_once("config.php");
             <div class="col-md-6">
                 <h2 class="signin-text mb-3"> Criar Conta</h2>
                 <p>Por favor, preencha os campos do formulário para criar a sua conta.</p>
-                <br>
+                
                 <div>
                     <form method="post">
                         <div>
                             <label for="login">Usuário*</label>
-                            <input type="text" name="username" id="login" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                            <input type="text" placeholder="Username" name="username" id="login" class="form-control required <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                             <span class="invalid-feedback"><?php echo $username_err; ?></span>
                         </div>
                         </br>
                         <div>
-                            <label for="senha">Senha</label>
-                            <input type="password" name="senha" id="senha" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                            <label for="senha">Senha*</label>
+                            <input type="password" placeholder="Mínimo 6 dígitos" name="senha" id="senha" class="form-control required <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                         </div>
                         </br>
                         <div>
-                            <label for="senha">Confirme sua senha</label>
-                            <input type="password" name="confirma_senha" id="senha" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                            <label for="senha">Confirme sua senha*</label>
+                            <input type="password" placeholder="Mínimo 6 dígitos" name="confirma_senha" id="senha" class="form-control required <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
                             <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
                         </div>
                         </br>
-                        </br>
                         <div>
-                            <label for="cep">CEP</label>
-                            <input type="text" placeholder="87624-457" name="cep" class="form-control" id="cep">
+                            <label for="login">E-mail*</label>
+                            <input type="email" placeholder="email@gmail.com" name="email" class="form-control" id="email" required>
                         </div>
                         </br>
                         <div>
-                            <label for="cidade">Cidade</label>
-                            <input type="text" placeholder="Cidade" name="cidade" class="form-control" id="cidade">
+                            <label for="cep">CEP*</label>
+                            <input type="text" placeholder="87624-457" name="cep" class="form-control" id="cep" required>
                         </div>
                         </br>
                         <div>
-                            <label for="logradouro">Logradouro</label>
-                            <input type="text" placeholder="Rua Joaquim" name="logradouro" class="form-control" id="logradouro">
-                        </div>
-                        </br>
-                        <div>
-                            <label for="bairro">Bairro</label>
-                            <input type="text" placeholder="Bairro" name="bairro" class="form-control" id="bairro">
-                        </div>
-                        </br>
-                        <div>
-                            <label for="numero">Número</label>
-                            <input type="text" placeholder="102" name="numero" class="form-control" id="numero">
-                        </div>
-                        </br>
-                        <div>
-                            <label for="uf">Estado</label>
-                            <select class="form-select form-control" name="estado" id="uf">
+                            <label for="uf">Estado*</label>
+                            <select class="form-select form-control" name="estado" id="uf" required>
                                 <option value="0"> Escolha seu estado</option>
                                 <option value="ac">Acre</option>
                                 <option value="al">Alagoas</option>
@@ -207,6 +191,26 @@ require_once("config.php");
                             </select>
                         </div>
                         </br>
+                        <div>
+                            <label for="cidade">Cidade*</label>
+                            <input type="text" placeholder="Cidade" name="cidade" class="form-control" id="cidade" required>
+                        </div>
+                        </br>
+                        <div>
+                            <label for="logradouro">Logradouro*</label>
+                            <input type="text" placeholder="Rua Joaquim" name="logradouro" class="form-control" id="logradouro" required>
+                        </div>
+                        </br>
+                        <div>
+                            <label for="numero">Número*</label>
+                            <input type="text" placeholder="102" name="numero" class="form-control" id="numero" required>
+                        </div>
+                        </br>
+                        <div>
+                            <label for="bairro">Bairro*</label>
+                            <input type="text" placeholder="Bairro" name="bairro" class="form-control" id="bairro" required>
+                        </div>
+                        </br></br>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Enviar">
                             <input type="reset" class="btn btn-secondary" value="Limpar">
