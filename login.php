@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: home.php");
+    header("location: dashboard.php");
     exit;
 }
 
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["uso_id"] = $id;
                             $_SESSION["uso_nome"] = $username;
 
-                            header("location: home.php");
+                            header("location: dashboard.php");
                         } else {
                             $login_err = "Usuário ou senha incorretos.";
                         }
