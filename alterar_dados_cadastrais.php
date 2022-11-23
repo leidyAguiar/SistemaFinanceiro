@@ -176,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </br>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Enviar">
-                            <a class="btn btn-secondary" href="home.php">Cancelar</a>
+                            <a class="btn btn-secondary" href="dashboard.php">Cancelar</a>
                         </div>           
                     </form>
 </body>

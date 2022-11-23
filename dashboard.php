@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
 require_once("config.php");
 ?>
 <!DOCTYPE html>
@@ -38,7 +42,7 @@ require_once("config.php");
 
             <li>
                 <i class="las la-power-off"></i>
-                <a href="./index.php">Logout</a>
+                <a href="./logout.php">Logout</a>
             </li>
         </div>
     </section>

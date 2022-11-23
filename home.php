@@ -23,7 +23,7 @@ session_start();
         <a href="#">Link</a>
         <a href="#">Link</a>
         <a href="#">Link</a>
-        <a href="logout.php" style="float:right;">SAIR</a>
+        <a href="" style="float:right;">SAIR</a>
       </div>
 
       <div class="row">
