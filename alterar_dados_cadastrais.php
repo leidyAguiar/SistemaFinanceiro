@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </label>
         <label class="logo"><img src="./img/logoBranca3.png" alt=""></label>
         <ul>
-            <li><a href="./index.php">Sair</a></li>
+            <li><a href="./dashboard.php">Voltar</a></li>
         </ul>
     </nav>
     <div class="container">

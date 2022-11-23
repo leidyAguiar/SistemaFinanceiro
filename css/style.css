@@ -156,3 +156,68 @@ a:hover {
     display: none;
 }
 
+/*menu*/
+
+#menu{
+    background-color:#030c4c;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+
+#menu .logo img{
+    width: 40px;
+    margin-right:15px ;
+}
+
+#menu .logo{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 30px 0 0 30px;
+}
+
+#menu .itens{
+    margin-top: 40px;
+}
+
+#menu .itens li{
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3 ease;
+}
+
+#menu .itens li:hover{
+    background-color:#5f95e7;
+    cursor: pointer;
+}
+
+#menu .itens li:nth-child(1){
+    border-left: 4px solid #fff;
+}
+
+#menu .itens li i{
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 30px;
+    margin: 0 10px 0 25px;
+}
+
+#menu .itens li:hover i,
+#menu .itens li:hover a {
+    color: #030c4c;
+}
+
+#menu .itens li a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 23px;
+    font-weight: 300px;
+    transition: 0.3 ease;
+}

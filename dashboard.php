@@ -41,6 +41,12 @@ require_once("config.php");
             </li>
 
             <li>
+                <i class="las la-cog"></i>
+                <a href="./alterar_dados_cadastrais.php">Configurações</a>
+                </ul>
+            </li>
+
+            <li>
                 <i class="las la-power-off"></i>
                 <a href="./logout.php">Logout</a>
             </li>
@@ -57,18 +63,7 @@ require_once("config.php");
             </div>
 
             <div class="profile">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-                <img src="./img/man.png" alt="">
+                <img src="./img/man.png" alt="">>>
             </div>
         </div>
 
