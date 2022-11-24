@@ -32,5 +32,5 @@ if (isset($_GET['tran_id'])) {
     $msgerror =  "O ID não foi informado!";
 }
 
-header("Location: despesas.php?msg={$msg}&msgerror={$msgerror}");
+header("Location: receitas.php?msg={$msg}&msgerror={$msgerror}");
 ?>

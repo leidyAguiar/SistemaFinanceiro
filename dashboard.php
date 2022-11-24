@@ -25,39 +25,7 @@ require_once("config.php");
 </head>
 
 <body>
-    <section id="menu">
-        <div class="logo">
-            <img src="./img/logoDinheiro.png" alt="">
-            <h2>NuAzul<h2>
-        </div>
-        <div class="itens">
-            <li>
-                <a href="./dashboard.php"><i class="las la-home"></i>Dashboard</a>
-            </li>
-
-            <li>
-                <a href="./despesas.php"><i class="las la-donate"></i>Despesas</a>
-            </li>
-            <li>
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="las la-cog"></i>Configurações
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownMenu">
-                    <li>
-                        <a href="./alterar_dados_cadastrais.php">Alterar Dados</a>
-                    </li>
-                    <li>
-                        <a href="#">Excluir Conta</a>
-                    </li>
-                    
-                </ul>
-            </li>
-            <li>
-                <a href="./logout.php"><i class="las la-power-off"></i>Logout</a>
-            </li>
-        </div>
-    </section>
-
+    <?php require("menu_lateral.php"); ?>
     <section id="interface">
         <div class="navigation">
             <div class="n1">
