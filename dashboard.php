@@ -45,21 +45,35 @@ require_once("config.php");
         </h3>
 
         <div class="values">
-            <div class="val-box">
-                <i class="las la-wallet"></i>
-                <div>
-                    <h3>1000</h3>
-                    <span>Saldo atual</span>
+        <div class="row">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                    <i class="las la-wallet"></i>
+                        <span>Saldo atual</span>
+                        <h3>R$ 1000</h3>
+                    </div>
                 </div>
             </div>
-
-            <div class="val-box">
-                <i class="las la-hand-holding-usd"></i>
-                <div>
-                    <h3>300</h3>
-                    <span>Despesas</span>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="las la-long-arrow-alt-up"></i>
+                        <span>Receita</span>
+                        <h3>R$ 300</h3>
+                    </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="las la-arrow-down"></i> 
+                        <span>Despesas</span>
+                        <h3>R$ 300</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
