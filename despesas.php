@@ -12,7 +12,7 @@ require_once("config.php");
     <!--Icon-->
     <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
     <!--CSS-->
-    <link href="./css/style-dashboard.css" rel="stylesheet">
+    <link href="./css/style.despesas.css" rel="stylesheet">
     <!--Icones da tela-->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <!--Bootstrap-->
