@@ -21,7 +21,7 @@ $username = $_SESSION["uso_nome"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $new_password = trim($_POST["new_password"]); 
+    $new_password = trim($_POST["new_password"]);
     $confirm_password = trim($_POST["confirm_password"]);
     $new_email = trim($_POST["email"]);
     $cep = trim($_POST['cep']);
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($confirm_password)) {
         $confirm_password_err = "Por favor, confirme a senha.";
     } elseif (empty($new_password_err) && ($new_password != $confirm_password)) {
-            $confirm_password_err = "A senha não confere.";
+        $confirm_password_err = "A senha não confere.";
     }
     if (empty($new_email)) {
         $email_err = "Por favor, digite o novo e-mail.";
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt, "i", $param_id);
 
         $param_id = $_SESSION["uso_id"];
-       
+
 
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_store_result($stmt);
@@ -124,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title><?php echo $nomeSistema ?></title>
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!--CSS-->
     <link href="./css/style-cadastro.css" rel="stylesheet">
     <!--Icon-->
@@ -141,24 +142,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="itens">
             <li>
-                <i class="las la-home"></i>
-                <a href="./dashboard.php">Dashboard</a>
+                <a href="./dashboard.php"><i class="las la-home"></i>Dashboard</a>
             </li>
 
             <li>
-                <i class="las la-donate"></i>
-                <a href="./despesas.php">Despesas</a>
+                <a href="./despesas.php"><i class="las la-donate"></i>Despesas</a>
             </li>
-
             <li>
-                <i class="las la-cog"></i>
-                <a href="./alterar_dados_cadastrais.php">Configurações</a>
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="las la-cog"></i>Configurações
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownMenu">
+                    <li>
+                        <a href="./alterar_dados_cadastrais.php">Alterar Dados</a>
+                    </li>
+                    <li>
+                        <a href="#">Excluir Conta</a>
+                    </li>
+
                 </ul>
             </li>
-
             <li>
-                <i class="las la-power-off"></i>
-                <a href="./logout.php">Logout</a>
+                <a href="./logout.php"><i class="las la-power-off"></i>Logout</a>
             </li>
         </div>
     </section>
@@ -196,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
                         </div>
                         </br>
-                      
+
                         </br>
                         <div>
                             <label for="estado">Estado</label>

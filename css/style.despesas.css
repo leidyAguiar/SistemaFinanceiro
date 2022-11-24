@@ -24,6 +24,13 @@ body{
 
 }
 
+#dropdownMenu{
+    background-color:#bbd5f9 !important;
+    margin-left: 20px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 #menu .logo img{
     width: 40px;
     margin-right:15px ;
@@ -49,10 +56,6 @@ body{
 #menu .itens li:hover{
     background-color:#5f95e7;
     cursor: pointer;
-}
-
-#menu .itens li:nth-child(2){
-    border-left: 4px solid #fff;
 }
 
 #menu .itens li i{

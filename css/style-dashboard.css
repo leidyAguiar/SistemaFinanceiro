@@ -21,8 +21,15 @@ body{
     position: fixed;
     top: 0;
     left: 0;
-
 }
+
+#dropdownMenu{
+    background-color:#bbd5f9 !important;
+    margin-left: 20px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 
 #menu .logo img{
     width: 40px;
@@ -51,9 +58,9 @@ body{
     cursor: pointer;
 }
 
-#menu .itens li:nth-child(1){
+/*#menu .itens li:nth-child(1){
     border-left: 4px solid #fff;
-}
+}*/
 
 #menu .itens li i{
     color: #fff;

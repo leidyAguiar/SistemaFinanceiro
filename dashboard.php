@@ -21,6 +21,7 @@ require_once("config.php");
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -31,24 +32,28 @@ require_once("config.php");
         </div>
         <div class="itens">
             <li>
-                <i class="las la-home"></i>
-                <a href="./dashboard.php">Dashboard</a>
+                <a href="./dashboard.php"><i class="las la-home"></i>Dashboard</a>
             </li>
 
             <li>
-                <i class="las la-donate"></i>
-                <a href="./despesas.php">Despesas</a>
+                <a href="./despesas.php"><i class="las la-donate"></i>Despesas</a>
             </li>
-
             <li>
-                <i class="las la-cog"></i>
-                <a href="./alterar_dados_cadastrais.php">Configurações</a>
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="las la-cog"></i>Configurações
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownMenu">
+                    <li>
+                        <a href="./alterar_dados_cadastrais.php">Alterar Dados</a>
+                    </li>
+                    <li>
+                        <a href="#">Excluir Conta</a>
+                    </li>
+                    
                 </ul>
             </li>
-
             <li>
-                <i class="las la-power-off"></i>
-                <a href="./logout.php">Logout</a>
+                <a href="./logout.php"><i class="las la-power-off"></i>Logout</a>
             </li>
         </div>
     </section>
@@ -63,7 +68,7 @@ require_once("config.php");
             </div>
 
             <div class="profile">
-                <img src="./img/man.png" alt="">>>
+                <img src="./img/man.png" alt="">
             </div>
         </div>
 
