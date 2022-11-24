@@ -2,27 +2,54 @@
 
 require_once("connection.php");
 
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $email =  $confirm_password = "";
+$username_err = $password_err = $email_err = $confirm_password_err = "";
+$cep = $logradouro = $numero = $bairro = $cidade = $estado = "";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Por favor, digite o usuário.";
-    } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))) {
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["senha"]);
+    $confirm_password = trim($_POST["confirma_senha"]);
+    $cep = trim($_POST['cep']);
+    $logradouro = trim($_POST['logradouro']);
+    $numero = trim($_POST['numero']);
+    $bairro = trim($_POST['bairro']);
+    $cidade = trim($_POST['cidade']);
+    $estado = trim($_POST['estado']);
+
+
+    if (empty($username) && empty($email) && empty($password) && empty($confirm_password)) {
+        $username_err = "Por favor, informe todos os campos necessários.";
+    } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
         $username_err = "Usuário pode conter apenas letras, números e underscores.";
     } else {
         $sql = "SELECT uso_id FROM usuario WHERE uso_nome = ?";
-
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-            $param_username = trim($_POST["username"]);
+            $param_username = $username;
+
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_store_result($stmt);
-                if (mysqli_stmt_num_rows($stmt) == 1) {
+                if (mysqli_stmt_num_rows($stmt) > 0) {
                     $username_err = "Esse usuário já está sendo usado.";
-                } else {
-                    $username = trim($_POST["username"]);
+                }
+            } else {
+                echo "Oops! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+            mysqli_stmt_close($stmt);
+        }
+
+        $sql = "SELECT uso_id FROM usuario WHERE uso_email = ?";
+        if ($stmt = mysqli_prepare($conn, $sql)) {
+            mysqli_stmt_bind_param($stmt, "s", $param_email);
+            $param_email = $email;
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_store_result($stmt);
+                if (mysqli_stmt_num_rows($stmt) > 0) {
+                    $email_err = "Esse e-mail já está sendo usado.";
                 }
             } else {
                 echo "Oops! Algo deu errado. Por favor, tente novamente mais tarde.";
@@ -30,43 +57,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_close($stmt);
         }
     }
-    if (empty(trim($_POST["senha"]))) {
+    if (empty($password)) {
         $password_err = "Por favor, digite a senha.";
-    } elseif (strlen(trim($_POST["senha"])) < 6) {
+    } elseif (strlen($password) < 6) {
         $password_err = "A senha deve possuir ao menos 6 caracteres.";
-    } else {
-        $password = trim($_POST["senha"]);
     }
-    if (empty(trim($_POST["confirma_senha"]))) {
+    if (empty($confirm_password)) {
         $confirm_password_err = "Por favor, digite a confirmação da senha.";
-    } else {
-        $confirm_password = trim($_POST["confirma_senha"]);
-        if (empty($password_err) && ($password != $confirm_password)) {
-            $confirm_password_err = "As senhas digitadas não conferem.";
-        }
+    } elseif (empty($password_err) && ($password != $confirm_password)) {
+        $confirm_password_err = "As senhas digitadas não conferem.";
     }
-    if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
-        $sql = "INSERT INTO usuario (uso_nome, uso_senha) VALUES (?, ?)";
+    if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
+        $sql = "INSERT INTO usuario (uso_nome, uso_senha, uso_email) VALUES (?, ?, ?)";
 
         if ($stmt = mysqli_prepare($conn, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $param_email);
 
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
+            $param_email = $email;
 
             if (mysqli_stmt_execute($stmt)) {
                 $userId = mysqli_insert_id($conn);
 
-                $CEP = $_POST['cep'];
-                $logradouro = $_POST['logradouro'];
-                $numero = $_POST['numero'];
-                $bairro = $_POST['bairro'];
-                $cidade = $_POST['cidade'];
-                $estado = $_POST['estado'];
+
                 $sql = "INSERT INTO endereco (uso_id, end_num, end_bairro, end_logradouro, end_cep, end_cidade, end_uf) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 if ($stmt = mysqli_prepare($conn, $sql)) {
-                    mysqli_stmt_bind_param($stmt, "iisssss", $userId, $numero, $bairro, $logradouro, $CEP, $cidade, $estado);
+                    mysqli_stmt_bind_param($stmt, "iisssss", $userId, $numero, $bairro, $logradouro, $cep, $cidade, $estado);
                     if (mysqli_stmt_execute($stmt)) {
                         header("location: login.php");
                     } else {
@@ -126,13 +144,19 @@ require_once("config.php");
             <div class="col-md-6">
                 <h2 class="signin-text mb-3"> Criar Conta</h2>
                 <p>Por favor, preencha os campos do formulário para criar a sua conta</p>
-                
+
                 <div>
                     <form method="post">
                         <div>
                             <label for="login">Usuário*</label>
                             <input type="text" placeholder="Username" name="username" id="login" class="form-control required <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                             <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                        </div>
+                        </br>
+                        <div>
+                            <label for="login">E-mail*</label>
+                            <input type="email" placeholder="email@gmail.com" name="email" id="email" class="form-control required <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                            <span class="invalid-feedback"><?php echo $email_err; ?></span>
                         </div>
                         </br>
                         <div>
@@ -147,68 +171,64 @@ require_once("config.php");
                             <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
                         </div>
                         </br>
-                        <div>
-                            <label for="login">E-mail*</label>
-                            <input type="email" placeholder="email@gmail.com" name="email" class="form-control" id="email" required>
-                        </div>
                         </br>
                         <div>
-                            <label for="uf">Estado*</label>
-                            <select class="form-select form-control" name="estado" id="uf" required>
+                            <label for="estado">Estado*</label>
+                            <select class="form-select form-control" name="estado" id="estado" required>
                                 <option value="0"> Escolha seu estado</option>
-                                <option value="ac">Acre</option>
-                                <option value="al">Alagoas</option>
-                                <option value="am">Amazonas</option>
-                                <option value="ap">Amapá</option>
-                                <option value="ba">Bahia</option>
-                                <option value="ce">Ceará</option>
-                                <option value="df">Distrito Federal</option>
-                                <option value="es">Espírito Santo</option>
-                                <option value="go">Goiás</option>
-                                <option value="ma">Maranhão</option>
-                                <option value="mt">Mato Grosso</option>
-                                <option value="ms">Mato Grosso do Sul</option>
-                                <option value="mg">Minas Gerais</option>
-                                <option value="pa">Pará</option>
-                                <option value="pb">Paraíba</option>
-                                <option value="pr">Paraná</option>
-                                <option value="pe">Pernambuco</option>
-                                <option value="pi">Piauí</option>
-                                <option value="rj">Rio de Janeiro</option>
-                                <option value="rn">Rio Grande do Norte</option>
-                                <option value="ro">Rondônia</option>
-                                <option value="rs">Rio Grande do Sul</option>
-                                <option value="rr">Roraima</option>
-                                <option value="sc">Santa Catarina</option>
-                                <option value="se">Sergipe</option>
-                                <option value="sp">São Paulo</option>
-                                <option value="to">Tocantins</option>
+                                <option value="ac" <?= $estado === "ac" ? "selected" : "" ?>>Acre</option>
+                                <option value="al" <?= $estado === "al" ? "selected" : "" ?>>Alagoas</option>
+                                <option value="am" <?= $estado === "am" ? "selected" : "" ?>>Amazonas</option>
+                                <option value="ap" <?= $estado === "ap" ? "selected" : "" ?>>Amapá</option>
+                                <option value="ba" <?= $estado === "ba" ? "selected" : "" ?>>Bahia</option>
+                                <option value="ce" <?= $estado === "ce" ? "selected" : "" ?>>Ceará</option>
+                                <option value="df" <?= $estado === "df" ? "selected" : "" ?>>Distrito Federal</option>
+                                <option value="es" <?= $estado === "es" ? "selected" : "" ?>>Espírito Santo</option>
+                                <option value="go" <?= $estado === "go" ? "selected" : "" ?>>Goiás</option>
+                                <option value="ma" <?= $estado === "ma" ? "selected" : "" ?>>Maranhão</option>
+                                <option value="mt" <?= $estado === "mt" ? "selected" : "" ?>>Mato Grosso</option>
+                                <option value="ms" <?= $estado === "ms" ? "selected" : "" ?>>Mato Grosso do Sul</option>
+                                <option value="mg" <?= $estado === "mg" ? "selected" : "" ?>>Minas Gerais</option>
+                                <option value="pa" <?= $estado === "pa" ? "selected" : "" ?>>Pará</option>
+                                <option value="pb" <?= $estado === "pb" ? "selected" : "" ?>>Paraíba</option>
+                                <option value="pr" <?= $estado === "pr" ? "selected" : "" ?>>Paraná</option>
+                                <option value="pe" <?= $estado === "pe" ? "selected" : "" ?>>Pernambuco</option>
+                                <option value="pi" <?= $estado === "pi" ? "selected" : "" ?>>Piauí</option>
+                                <option value="rj" <?= $estado === "rj" ? "selected" : "" ?>>Rio de Janeiro</option>
+                                <option value="rn" <?= $estado === "rn" ? "selected" : "" ?>>Rio Grande do Norte</option>
+                                <option value="ro" <?= $estado === "ro" ? "selected" : "" ?>>Rondônia</option>
+                                <option value="rs" <?= $estado === "rs" ? "selected" : "" ?>>Rio Grande do Sul</option>
+                                <option value="rr" <?= $estado === "rr" ? "selected" : "" ?>>Roraima</option>
+                                <option value="sc" <?= $estado === "sc" ? "selected" : "" ?>>Santa Catarina</option>
+                                <option value="se" <?= $estado === "se" ? "selected" : "" ?>>Sergipe</option>
+                                <option value="sp" <?= $estado === "sp" ? "selected" : "" ?>>São Paulo</option>
+                                <option value="to" <?= $estado === "to" ? "selected" : "" ?>>Tocantins</option>
                             </select>
                         </div>
                         </br>
                         <div>
                             <label for="cep">CEP*</label>
-                            <input type="text" placeholder="87624-457" name="cep" class="form-control" id="cep" required>
+                            <input type="text" placeholder="87624-457" name="cep" class="form-control" required id="cep" value="<?php echo $cep; ?>">
                         </div>
                         </br>
                         <div>
                             <label for="cidade">Cidade*</label>
-                            <input type="text" placeholder="Cidade" name="cidade" class="form-control" id="cidade" required>
+                            <input type="text" placeholder="Cidade" name="cidade" class="form-control" required id="cidade" value="<?php echo $cidade; ?>">
                         </div>
                         </br>
                         <div>
                             <label for="logradouro">Logradouro*</label>
-                            <input type="text" placeholder="Rua Joaquim" name="logradouro" class="form-control" id="logradouro" required>
+                            <input type="text" placeholder="Rua Joaquim" name="logradouro" class="form-control" required id="logradouro" value="<?php echo $logradouro; ?>">
                         </div>
                         </br>
                         <div>
                             <label for="numero">Número*</label>
-                            <input type="text" placeholder="102" name="numero" class="form-control" id="numero" required>
+                            <input type="text" placeholder="102" name="numero" class="form-control" required id="numero" value="<?php echo $numero; ?>">
                         </div>
                         </br>
                         <div>
                             <label for="bairro">Bairro*</label>
-                            <input type="text" placeholder="Bairro" name="bairro" class="form-control" id="bairro" required>
+                            <input type="text" placeholder="Bairro" name="bairro" class="form-control" required id="bairro" value="<?php echo $bairro; ?>">
                         </div>
                         </br></br>
                         <div class="form-group">
