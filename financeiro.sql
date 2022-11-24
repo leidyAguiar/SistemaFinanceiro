@@ -155,7 +155,12 @@ ALTER TABLE `endereco`
 --
 ALTER TABLE `transacao`
   ADD CONSTRAINT `transacao_ibfk_1` FOREIGN KEY (`uso_id`) REFERENCES `usuario` (`uso_id`);
+  ADD CONSTRAINT `transacao_ibfk_2` FOREIGN KEY (`tipo_id`) REFERENCES `tipo_transacao` (`tipo_id`);
 COMMIT;
+
+INSERT INTO `tipo_transacao` (`tipo_id`, `tipo_nome`) VALUES
+(1, 'despesa'),
+(2, 'receita');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
