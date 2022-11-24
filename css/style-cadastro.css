@@ -1,16 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-body {
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: #bbd5f9;
 }
 
+body{
+    width: 100%;
+    background: #fff;
+    position: relative;
+    display: flex;
+}
+
+#menu{
+    background-color:#030c4c;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+
+#menu .logo img{
+    width: 40px;
+    margin-right:15px ;
+}
+
+#menu .logo{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 30px 0 0 30px;
+}
+
+#menu .itens{
+    margin-top: 40px;
+}
+
+#menu .itens li{
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3 ease;
+}
+
+#menu .itens li:hover{
+    background-color:#5f95e7;
+    cursor: pointer;
+}
+
+#menu .itens li:nth-child(3){
+    border-left: 4px solid #fff;
+}
+
+#menu .itens li i{
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 30px;
+    margin: 0 10px 0 25px;
+}
+
+#menu .itens li:hover i,
+#menu .itens li:hover a {
+    color: #030c4c;
+}
+
+#menu .itens li a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 23px;
+    font-weight: 300px;
+    transition: 0.3 ease;
+}
+
+
 .content {
-    margin: 5%;
-    background-color: #ffffff;
-    padding: 4rem 4rem 3rem 4rem;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, .05);
-    border-radius: 20px;
+    margin: 50px 10px 50px 50px;
 }
 
 .signin-text {
@@ -49,7 +119,6 @@ form {
     background-color: #fff;
     outline: 0;
     box-shadow: none;
-
 }
 
 .btn-class {
@@ -97,37 +166,6 @@ form {
     border-radius: 50px;
 }
 
-nav {
-    background: #030c4c;
-    height: 80px;
-    width: 100%;
-    font-weight: 500;
-    padding: 0 30px;
-    display: flex;
-    justify-content: space-between;
-}
-
-label.logo {
-    line-height: 80px;
-    padding: 0 20px;
-}
-
-nav ul {
-    display: flex;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-    align-items: center;
-}
-
-
-nav ul li a {
-    color: white;
-    font-size: 24px;
-    padding: 7px 13px;
-    border-radius: 3px;
-}
-
 aside {
     display: flex;
     flex-direction: column;
@@ -155,4 +193,3 @@ a:hover {
 #check {
     display: none;
 }
-

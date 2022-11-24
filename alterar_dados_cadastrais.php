@@ -64,23 +64,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--CSS-->
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/style-cadastro.css" rel="stylesheet">
     <!--Icon-->
     <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
+    <!--Icones da tela-->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
 <body>
 
-    <nav>
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo"><img src="./img/logoBranca3.png" alt=""></label>
-        <ul>
-            <li><a href="./dashboard.php">Voltar</a></li>
-        </ul>
-    </nav>
+    <section id="menu">
+        <div class="logo">
+            <img src="./img/logoDinheiro.png" alt="">
+            <h2>NuAzul<h2>
+        </div>
+        <div class="itens">
+            <li>
+                <i class="las la-home"></i>
+                <a href="./dashboard.php">Dashboard</a>
+            </li>
+
+            <li>
+                <i class="las la-donate"></i>
+                <a href="./despesas.php">Despesas</a>
+            </li>
+
+            <li>
+                <i class="las la-cog"></i>
+                <a href="./alterar_dados_cadastrais.php">Configurações</a>
+                </ul>
+            </li>
+
+            <li>
+                <i class="las la-power-off"></i>
+                <a href="./logout.php">Logout</a>
+            </li>
+        </div>
+    </section>
+
     <div class="container">
         <div class="row content">
             <div class="col-md-6 mb-3">
@@ -92,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div>
                     <form method="post">
                         <div>
-                            <label for="login">Usuário</label>              
+                            <label for="login">Usuário</label>
                             <input type="text" name="username" id="login" class="form-control" readonly value="<?php echo $username; ?>">
                             <span class="invalid-feedback"><?php echo $username_err; ?></span>
                         </div>
@@ -177,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Enviar">
                             <a class="btn btn-secondary" href="dashboard.php">Cancelar</a>
-                        </div>           
+                        </div>
                     </form>
 </body>
 
