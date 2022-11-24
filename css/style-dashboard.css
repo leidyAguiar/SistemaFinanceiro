@@ -144,27 +144,22 @@ body{
     font-weight: 700;
 }
 
-.values{
-
-    padding: 30px 30px 30px 30px;
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
-    flex-wrap: wrap;
-
+.values .row{
+    margin: 70px;
 }
 
-.values .val-box{
-    background: #bbd5f9;
-    width: 250px;
-    padding: 20px 20px;
-    border-radius: 10px;
+.values .card-body{
+    background-color: #ffffff;
     display: flex;
-    justify-content: flex-start;
+    padding: 50px 50px;
     align-items: center;
+    padding: 4rem 4rem 3rem 4rem;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, .05);
+    
+    
 }
 
-.values .val-box i{
+.values .card-body i{
     font-size: 35px;
     width: 60px;
     height: 60px;
@@ -172,18 +167,31 @@ body{
     border-radius: 50%;
     text-align: center;
     color:#fff;
-    background: #5f95e7;
-    margin-right: 25px;
+    margin-right: 20px;
 }
 
-.values .val-box h3{
-    font-size: 30px;
-    font-weight: 600;
+.la-arrow-down {
+    background-color: #dc143c ;
+}
+
+.la-long-arrow-alt-up{
+    background-color: #075b39;
+}
+
+.la-wallet{
+    background-color: #231390;
+}
+
+.values .card-body h3{
+    font-size: 25px;
+    font-weight: 800;
     color: #030c4c;
+    margin-right: 10px;
 }
 
-.values .val-box span{
+.values .card-body span{
     font-size: 20px;
     color: #030c4c;
+    margin: 0px 10px 10px 10px;
 }
 
