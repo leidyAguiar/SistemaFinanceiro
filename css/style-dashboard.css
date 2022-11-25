@@ -195,6 +195,14 @@ body{
     margin: 0px 10px 10px 10px;
 }
 
+.data{
+    text-align: center;
+    margin-top: 5px;
+    margin: left 250px;
+    font-size: 20px;
+    color: #030c4c;
+} 
+
 .label {
     color: #030c4c;
 }
