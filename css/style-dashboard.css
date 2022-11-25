@@ -58,9 +58,6 @@ body{
     cursor: pointer;
 }
 
-/*#menu .itens li:nth-child(1){
-    border-left: 4px solid #fff;
-}*/
 
 #menu .itens li i{
     color: #fff;
@@ -94,12 +91,12 @@ body{
 #interface .navigation{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content:flex-end;
     padding: 15px 30px;
     border-bottom: 3px solid #5f95e7;
 }
 
-#interface .navigation .search{
+/* #interface .navigation .search{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -116,7 +113,7 @@ body{
     border: none;
     outline: none;
     font-size: 14px;
-}
+} */
 
 #interface .navigation .profile{
     display: flex;
@@ -197,11 +194,17 @@ body{
 
 .data{
     text-align: center;
-    margin-top: 5px;
-    margin: left 250px;
+    margin-top: 30px;
+    border-color: #030c4c;
+    /* margin: left 250px; */
     font-size: 20px;
     color: #030c4c;
-} 
+}
+
+.tituloData{
+    margin: 0 0 20px 0;
+}
+
 
 .label {
     color: #030c4c;
@@ -286,13 +289,6 @@ aside {
     justify-content: center;
 }
 
-a.active,
-a:hover {
-    background:#5f95e7;
-    color:#030c4c;
-    transition: .5s;
-}
-
 .checkbtn {
     font-size: 40px;
     color: white;
@@ -312,4 +308,35 @@ a:hover {
     font-weight: 600 !important;
     color: #030c4c;
     margin-top: 70px;
+}
+
+
+.row.content{
+    margin: 100px ;
+}
+
+.btn-primary-acao{
+    background-color: #030c4c;
+    color: #ebeff0;
+    border-radius: 10px;
+    border-width: 1px 1px 1px 1px #030c4c;
+    margin: 0px 15px 0px 10px;
+}
+
+.btn-danger {
+    background-color: #dc143c;
+    color: #ebeff0;
+    border-radius: 10px;
+    border-width: 1px 1px 1px 1px #dc143c;
+    margin: 0px 15px 0px 10px;
+}
+
+.table{
+    margin-top: 40px;
+    font-size: 17px;
+}
+
+.table-info{
+    background-color: #bbd5f9;
+    color: #030c4c;
 }

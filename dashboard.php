@@ -57,13 +57,6 @@ mysqli_close($conn);
     ?>
     <section id="interface">
         <div class="navigation">
-            <div class="n1">
-                <div class="search">
-                    <i class="las la-search"></i>
-                    <input type="text" placeholder="Pesquisar">
-                </div>
-            </div>
-
             <div class="profile">
                 <img src="./img/man.png" alt="">
             </div>
@@ -74,7 +67,7 @@ mysqli_close($conn);
         </h3>
 
         <div class="data">
-                <h4> Data</h4>
+            <h4 class="tituloData">Selecione uma data</h4>
             <input type="month" id="diaa" name="diaa">
 
         </div>

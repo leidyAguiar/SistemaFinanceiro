@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!--CSS-->
-    <link href="./css/style-cadastro.css" rel="stylesheet">
+    <link href="./css/style-dashboard.css" rel="stylesheet">
     <!--Icon-->
     <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
     <!--Icones da tela-->
@@ -103,11 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row content">
             <div class="col-md-6 mb-3">
-                <img src="./img/alterar.png" class="img-fluid" alt="image">
+                <img src="./img/despesa.png" class="img-fluid" alt="image">
             </div>
             <div class="col-md-6">
                 <h2 class="signin-text mb-3" style="margin-top:100px;"> Alterar Despesas</h2>
                 <p>Por favor, preencha os campos para serem alterados</p>
+                <br/>
                 <div>
                     <form method="post">
                         <input type="hidden" name="tran_id" value="<?php echo $tran_id; ?>">

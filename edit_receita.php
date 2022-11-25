@@ -88,14 +88,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $nomeSistema ?></title>
     <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <!--CSS-->
-    <link href="./css/style-cadastro.css" rel="stylesheet">
-    <!--Icon-->
-    <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
-    <!--Icones da tela-->
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!--CSS-->
+	<link href="./css/style-dashboard.css" rel="stylesheet">
+	<!--Icon-->
+	<link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
+	<!--Icones da tela-->
+	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
 <body>
@@ -103,10 +103,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row content">
             <div class="col-md-6 mb-3">
-                <img src="./img/alterar.png" class="img-fluid" alt="image">
+                <img src="./img/receita.png" class="img-fluid" alt="image">
             </div>
             <div class="col-md-6">
-                <h2 class="signin-text mb-3"> Alterar Receitas</h2>
+                <h2 class="signin-text mb-3" style="margin-top:100px;" > Alterar Receitas</h2>
                 <p>Por favor, preencha os campos para serem alterados</p>
                 <div>
                     <form method="post">

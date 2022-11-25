@@ -118,12 +118,8 @@ require_once("config.php");
                         <input type="password" name="senha" class="form-control" id="senha" required>
                     </div>
                     <br></br>
-                    <div class="form-group from-check">
-                        <input type="checkbox" name="checkbox" class="form-check-input" id="checkbox">
-                        <label class="form-check-label" for="checkbox">Lembrar-me</label>
-                    </div>
-                    <br></br>
                     <button class="btn btn-class">Entrar</button>
+                    <br></br>
                     <br></br>
                     <p>Não possui uma conta? <a href="register.php">Criar conta</a></p>
                 </form>
