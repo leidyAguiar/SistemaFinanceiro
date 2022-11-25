@@ -26,13 +26,26 @@ require_once("config.php");
 
 <body>
     <?php require("menu_lateral.php"); 
+
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+        header("location: login.php");
+        exit;
+    }
+
+    $dataCompleta = date("Y-m");
+    $data = [date("Y"), date("m")];
+    if (isset($_POST['mes_ano'])){
+        $dataCompleta  = $_POST['mes_ano'];
+        $data = explode('-', $_POST['mes_ano']);
+    }
+
     require_once('connection.php');
 
 // Mysql query to select data from table
-$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1";
+$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
 $result = $conn->query($mysql_query);
 
-$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2" ;
+$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}" ;
 $result2 = $conn->query($mysql_query);
 
 
@@ -68,11 +81,12 @@ mysqli_close($conn);
             Dashboard
         </h3>
 
-        <div class="data">
+        <form class="data" method="post">
             <h4 class="tituloData">Selecione uma data</h4>
-            <input type="month"id="mes_ano" name="mes_ano" value="<?=date("Y-m")?>">
+            <input type="month"id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
+            <input type="submit" value="buscar">
 
-        </div>
+        </form>
 
 
         <div class="values">
