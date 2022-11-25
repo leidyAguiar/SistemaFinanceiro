@@ -131,7 +131,7 @@ mysqli_close($conn);
             <tr>
               <td style="text-align:center"><?php echo $row['tran_id']; ?></td>
               <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
-              <td style="text-align:center"><?php echo (new DateTime($row['tran_data']))->format('Y-m-d'); ?></td>
+              <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
               <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
               <td style="display:flex;">
                 <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
