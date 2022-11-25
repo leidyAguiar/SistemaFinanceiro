@@ -55,7 +55,7 @@ mysqli_close($conn);
     $saldo_atual = $total_receita - $total_despesa;
 
     ?>
-    <section id="interface">
+    <section id="interface" style="margin-left:300px">
         <div class="navigation">
             <div class="n1">
                 <div class="search">

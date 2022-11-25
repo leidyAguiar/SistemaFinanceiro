@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 	<?php require("menu_lateral.php"); ?>
-	<div class="container">
+	<div class="container" style="margin-left:300px">
 		<h2>Receitas</h2>
 		<p>Cadastro de receitas.</p>
 		<hr>

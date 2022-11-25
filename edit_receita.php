@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <?php require("menu_lateral.php"); ?>
-    <div class="container">
+    <div class="container" style="margin-left:300px">
         <div class="row content">
             <div class="col-md-6 mb-3">
                 <img src="./img/alterar.png" class="img-fluid" alt="image">

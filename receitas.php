@@ -47,7 +47,7 @@ mysqli_close($conn);
 
 <body>
     <?php require("menu_lateral.php"); ?>
-    <div class="container">
+    <div class="container" style="margin-left:300px">
   <h2>Receitas</h2>
   <p>Listagem do receitas cadastradas.</p>
   <hr>

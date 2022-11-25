@@ -80,7 +80,7 @@ if (isset($_POST['enviar'])) {
 <body>
 
     <?php require("menu_lateral.php"); ?>
-    <div class="container">
+    <div class="container" style="margin-left:300px">
     <h2>Despesas</h2>
     <p>Cadastro de despesas.</p>
     <hr>

@@ -69,7 +69,7 @@ mysqli_close($conn);
 
 <body>
   <?php require("menu_lateral.php"); ?>
-  <div class="container">
+  <div class="container" style="margin-left:300px ;">
     <h2>Despesas</h2>
     <p>Listagem do despesas cadastradas.</p>
     <hr>
