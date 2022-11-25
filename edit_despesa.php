@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="./img/alterar.png" class="img-fluid" alt="image">
             </div>
             <div class="col-md-6">
-                <h2 class="signin-text mb-3"> Alterar Despesas</h2>
+                <h2 class="signin-text mb-3" style="margin-top:100px;"> Alterar Despesas</h2>
                 <p>Por favor, preencha os campos para serem alterados</p>
                 <div>
                     <form method="post">
