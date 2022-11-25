@@ -31,18 +31,7 @@
             <a href="./receitas.php"><i class="las la-piggy-bank"></i>Receitas</a>
         </li>
         <li>
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="las la-cog"></i>Configurações
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownMenu">
-                <li>
-                    <a href="./alterar_dados_cadastrais.php">Alterar Dados</a>
-                </li>
-                <li>
-                    <a href="#">Excluir Conta</a>
-                </li>
-
-            </ul>
+            <a href="./alterar_dados_cadastrais.php"><i class="las la-cog"></i>Configurações</a>
         </li>
         <li>
             <a href="./logout.php"><i class="las la-power-off"></i>Logout</a>
