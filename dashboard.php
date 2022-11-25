@@ -29,7 +29,7 @@ require_once("config.php");
     require_once('connection.php');
 
 // Mysql query to select data from table
-$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1" ;
+$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1";
 $result = $conn->query($mysql_query);
 
 $mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2" ;
@@ -42,6 +42,8 @@ mysqli_close($conn);
 ?>
 
 <?php 
+    $data_hoje= date("Y-m");
+
     $total_despesa = 0;
     while ($row = $result->fetch_assoc()) { 
       $total_despesa= $total_despesa + $row['tran_valor'];
@@ -57,13 +59,6 @@ mysqli_close($conn);
     ?>
     <section id="interface" style="margin-left:300px">
         <div class="navigation">
-            <div class="n1">
-                <div class="search">
-                    <i class="las la-search"></i>
-                    <input type="text" placeholder="Pesquisar">
-                </div>
-            </div>
-
             <div class="profile">
                 <img src="./img/man.png" alt="">
             </div>
@@ -74,8 +69,8 @@ mysqli_close($conn);
         </h3>
 
         <div class="data">
-                <h4> Data</h4>
-            <input type="month" id="diaa" name="diaa">
+            <h4 class="tituloData">Selecione uma data</h4>
+            <input type="month"id="mes_ano" name="mes_ano" value="<?=date("Y-m")?>">
 
         </div>
 
