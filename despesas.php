@@ -3,6 +3,7 @@
 session_start();
 
 require_once("enum.php");
+require_once('connection.php');
 
 require_once("config.php");
 
@@ -17,18 +18,32 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   exit;
 }
 
-/**
- * Select Table Data
- * Fectching aata from database using mysqli_fetch_array() function and without table tag
- */
+$mes = $ano = "";
+$mes_err = $ano_err = "";
 
-require_once('connection.php');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $mes = trim($_POST['mes']);
 
-// Mysql query to select data from table
-$mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value;
+  if (empty($mes)) {
+    $mes_err = "Por favor, informe o mês.";
+  }
+
+  $ano = trim($_POST['ano']);
+
+  if (empty($ano)) {
+    $ano_err = "Por favor, informe o ano.";
+  } else {
+    $mes = $mes;
+  }
+  if (empty($mes_err) && empty($ano_err)) {
+    $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " AND MONTH(tran_data) = {$mes} AND YEAR(tran_data) = {$ano} ORDER BY tran_data DESC";
+  }
+} else {
+  // Mysql query to select data from table
+  $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " ORDER BY tran_data DESC";
+}
 $result = $conn->query($mysql_query);
 
-//Connection Close
 mysqli_close($conn);
 ?>
 
@@ -55,38 +70,78 @@ mysqli_close($conn);
 <body>
   <?php require("menu_lateral.php"); ?>
   <div class="container">
-    <div class="row content">
+  <div class="row content">
       <h2 class="signin-text mb-3">Despesas</h2>
       <p>Listagem do despesas cadastradas.</p>
       <hr>
       <br></br>
       <div class="float-right p-1">
-        <a href="./insert_despesa.php"><button type="button" class="btn btn-primary-acao">+ Novo</button></a>
-      </div>
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr class="table-info" style="text-align:center">
-            <th scope="col" style="width: 5%;">#</th>
-            <th scope="col">Descrição</th>
-            <th scope="col" style="width: 20%;">Data Transação</th>
-            <th scope="col" style="width: 15%;">Valor Transação</th>
-            <th scope="col" style="width: 20%;">Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php while ($row = $result->fetch_assoc()) { ?>
-            <tr>
-              <td style="text-align:center"><?php echo $row['tran_id']; ?></td>
-              <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
-              <td style="text-align:center"><?php echo (new DateTime($row['tran_data']))->format('Y-m-d'); ?></td>
-              <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
-              <td style="display:flex;">
-                <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
-                <a href="delete_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-      </table>
+        <form method="post">
+          <div>
+            <label for="mes">Mês</label>
+            <select class="form-select form-control" style="width: 20%;" name="mes" id="mes">
+              <option value="0"> Escolha o Mês</option>
+
+              <option value="1" <?= $mes === "01" ? "selected" : "" ?>>Janeiro</option>
+              <option value="2" <?= $mes === "02" ? "selected" : "" ?>>Fevereiro</option>
+              <option value="3" <?= $mes === "03" ? "selected" : "" ?>>Março</option>
+              <option value="4" <?= $mes === "04" ? "selected" : "" ?>>Abril</option>
+              <option value="5" <?= $mes === "05" ? "selected" : "" ?>>Maio</option>
+              <option value="6" <?= $mes === "06" ? "selected" : "" ?>>Junho</option>
+              <option value="7" <?= $mes === "07" ? "selected" : "" ?>>Julho</option>
+              <option value="8" <?= $mes === "08" ? "selected" : "" ?>>Agosto</option>
+              <option value="9" <?= $mes === "09" ? "selected" : "" ?>>Setembro</option>
+              <option value="10" <?= $mes === "10" ? "selected" : "" ?>>Outubro</option>
+              <option value="11" <?= $mes === "11" ? "selected" : "" ?>>Novembro</option>
+              <option value="12" <?= $mes === "12" ? "selected" : "" ?>>Dezembro</option>
+            </select>
+          </div>
+          <div>
+            <label for="ano">Ano</label>
+            <select class="form-select form-control" style="width: 20%;" name="ano" id="ano">
+              <option value="0"> Escolha o Ano</option>
+              <option value="2023" <?= $ano === "2023" ? "selected" : "" ?>>2023</option>
+              <option value="2022" <?= $ano === "2022" ? "selected" : "" ?>>2022</option>
+              <option value="2021" <?= $ano === "2021" ? "selected" : "" ?>>2021</option>
+              <option value="2020" <?= $ano === "2020" ? "selected" : "" ?>>2020</option>
+              <option value="2019" <?= $ano === "2019" ? "selected" : "" ?>>2019</option>
+              <option value="2018" <?= $ano === "2018" ? "selected" : "" ?>>2018</option>
+            </select>
+          </div>
+          </br>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Filtrar">
+          </div>
+          </br>
+        </form>
+      <a href="./insert_despesa.php"><button type="button" class="btn btn-primary">+ Novo</button></a>
     </div>
+    <table class="table table-striped table-bordered table-hover">
+
+      <thead>
+        <tr class="table-info" style="text-align:center">
+          <th scope="col" style="width: 5%;">#</th>
+          <th scope="col">Descrição</th>
+          <th scope="col" style="width: 20%;">Data Transação</th>
+          <th scope="col" style="width: 15%;">Valor Transação</th>
+          <th scope="col" style="width: 20%;">Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while ($row = $result->fetch_assoc()) { ?>
+          <tr>
+            <td style="text-align:center"><?php echo $row['tran_id']; ?></td>
+            <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
+            <td style="text-align:center"><?php echo (new DateTime($row['tran_data']))->format('Y-m-d'); ?></td>
+            <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
+            <td style="display:flex;">
+              <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary">Editar</button></a>
+              <a href="delete_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
+            </td>
+          </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+  </div>
+
 </body>
