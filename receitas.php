@@ -69,9 +69,9 @@ mysqli_close($conn);
         <tbody>
           <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
-              <td style="text-align:center"><?php echo $row['tran_id']; ?></td>
+              <td style="text-align:center"><?php echo $row['tran_id']; ?></td> 
               <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
-              <td style="text-align:center"><?php echo (new DateTime($row['tran_data']))->format('Y-m-d'); ?></td>
+              <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
               <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
               <td style="text-align:center">
                 <a href="edit_receita.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
