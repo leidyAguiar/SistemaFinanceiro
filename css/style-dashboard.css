@@ -174,7 +174,7 @@ body{
 
 .data{
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
     border-color: #030c4c;
     font-size: 20px;
     color: #030c4c;
@@ -300,6 +300,7 @@ aside {
     border-radius: 10px;
     border-width: 1px 1px 1px 1px #030c4c;
     margin: 0px 15px 0px 10px;
+    margin-bottom: 5px;
 }
 
 /* .btn-danger {
