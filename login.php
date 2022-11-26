@@ -1,11 +1,15 @@
 <?php
+
 session_start();
+require_once("config.php");
+require_once("connection.php");
+
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: dashboard.php");
     exit;
 }
 
-require_once("connection.php");
+
 
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
@@ -60,10 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($conn);
 }
 
-?>
-
-<?php
-require_once("config.php");
 ?>
 
 <!DOCTYPE html>
