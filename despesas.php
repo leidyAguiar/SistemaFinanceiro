@@ -68,7 +68,7 @@ mysqli_close($conn);
             <th scope="col">Descrição</th>
             <th scope="col" style="width: 20%;">Data Transação</th>
             <th scope="col" style="width: 15%;">Valor Transação</th>
-            <th scope="col" style="width: 20%;">Ação</th>
+            <th scope="col" style="width: 25%;">Ação</th>
           </tr>
         </thead>
         <tbody>
