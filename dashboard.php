@@ -94,7 +94,7 @@ require_once("config.php");
                         <div class="card-body">
                             <i class="las la-long-arrow-alt-up"></i>
                             <span>Receita</span>
-                            <h3>R$ <?php echo $total_receita ?></h3>
+                            <h3>R$ <?= number_format($total_receita, 2, ',', '.'); ?></h3>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ require_once("config.php");
                         <div class="card-body">
                             <i class="las la-arrow-down"></i>
                             <span>Despesas</span>
-                            <h3>R$ <?php echo $total_despesa ?></h3>
+                            <h3>R$ <?= number_format($total_despesa, 2, ',', '.'); ?></h3>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ require_once("config.php");
                         <div class="card-body">
                             <i class="las la-wallet"></i>
                             <span>Saldo atual</span>
-                            <h3>R$ <?php echo $saldo_atual ?></h3>
+                            <h3>R$ <?= number_format($saldo_atual, 2, ',', '.'); ?></h3>
                         </div>
                     </div>
                 </div>
