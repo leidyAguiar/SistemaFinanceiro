@@ -16,10 +16,19 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   exit;
 }
 
+$dataCompleta = date("Y-m");
+    $data = [date("Y"), date("m")];
+    if (isset($_POST['mes_ano'])) {
+        $dataCompleta  = $_POST['mes_ano'];
+        $data = explode('-', $_POST['mes_ano']);
+    }
+
 
 require_once('connection.php');
+$mysql_query = "SELECT  tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 
+AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
 
-$mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::RECEITA->value;
+// $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::RECEITA->value;
 $result = $conn->query($mysql_query);
 
 
@@ -52,6 +61,12 @@ mysqli_close($conn);
       <h2 class="signin-text mb-3">Receitas</h2>
       <p>Listagem de receitas cadastradas.</p>
       <hr>
+      <form class="data" method="post">
+            <h4 class="tituloData">Selecione uma data</h4>
+            <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
+            <input type="submit" value="buscar">
+        </form>
+
       <br></br>
       <div class="float-right p-1">
         <a href="./insert_receita.php"><button type="button" class="btn btn-primary-acao">+ Novo</button></a>
