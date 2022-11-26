@@ -1,15 +1,13 @@
 <?php
+
 session_start();
-
 require_once("connection.php");
-
 require_once("config.php");
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
-
 
 $new_password = $new_email = $confirm_password =  "";
 $cep = $logradouro = $numero = $bairro = $cidade = $estado = "";
