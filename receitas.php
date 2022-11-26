@@ -78,7 +78,7 @@ mysqli_close($conn);
             <th scope="col">Descrição</th>
             <th scope="col" style="width: 20%;">Data Transação</th>
             <th scope="col" style="width: 15%;">Valor Transação</th>
-            <th scope="col" style="width: 20%;">Ação</th>
+            <th scope="col" style="width: 25%;">Ação</th>
           </tr>
         </thead>
         <tbody>
@@ -87,7 +87,7 @@ mysqli_close($conn);
               <td style="text-align:center"><?php echo $row['tran_id']; ?></td> 
               <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
               <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
-              <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
+              <td style="text-align:center">R$ <?php echo number_format($row['tran_valor'],2,',', '.'); ?></td>
               <td style="text-align:center">
                 <a href="edit_receita.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
                 <a href="delete_receita.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
