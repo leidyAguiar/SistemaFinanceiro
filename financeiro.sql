@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2022 at 02:10 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Tempo de geração: 26-Nov-2022 às 01:24
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `financeiro`
+-- Banco de dados: `financeiro`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `endereco`
+-- Estrutura da tabela `endereco`
 --
 CREATE DATABASE financeiro;
 
@@ -41,10 +41,17 @@ CREATE TABLE `endereco` (
   `end_uf` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `endereco`
+--
+
+INSERT INTO `endereco` (`end_id`, `uso_id`, `end_num`, `end_bairro`, `end_logradouro`, `end_cep`, `end_cidade`, `end_uf`) VALUES
+(1, 1, 75, 'Vila Paulo Roberto', 'Rua Teresina', '19046-230', 'Presidente Prudente', 'sp');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_transacao`
+-- Estrutura da tabela `tipo_transacao`
 --
 
 CREATE TABLE `tipo_transacao` (
@@ -52,10 +59,18 @@ CREATE TABLE `tipo_transacao` (
   `tipo_nome` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `tipo_transacao`
+--
+
+INSERT INTO `tipo_transacao` (`tipo_id`, `tipo_nome`) VALUES
+(1, 'despesa'),
+(2, 'receita');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transacao`
+-- Estrutura da tabela `transacao`
 --
 
 CREATE TABLE `transacao` (
@@ -67,10 +82,20 @@ CREATE TABLE `transacao` (
   `tran_descricao` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `transacao`
+--
+
+INSERT INTO `transacao` (`tran_id`, `tipo_id`, `uso_id`, `tran_data`, `tran_valor`, `tran_descricao`) VALUES
+(1, 2, 1, '2022-11-25 00:00:00', 1000, 'Estágio'),
+(2, 2, 1, '2022-12-01 00:00:00', 1000, 'Salário'),
+(3, 1, 1, '2022-11-25 00:00:00', 100, 'Amazon Prime'),
+(4, 1, 1, '2022-12-01 00:00:00', 20, 'Uber');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -81,24 +106,31 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`uso_id`, `uso_nome`, `uso_email`, `uso_senha`) VALUES
+(1, 'admin', 'admin@gmail.com', '$2y$10$EEgGRPcfKYZPGTtxpVo6VeIXfdT.iiByVvq39xTi.TO.//XNTlqcu');
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `endereco`
+-- Índices para tabela `endereco`
 --
 ALTER TABLE `endereco`
   ADD PRIMARY KEY (`end_id`),
   ADD KEY `uso_id` (`uso_id`);
 
 --
--- Indexes for table `tipo_transacao`
+-- Índices para tabela `tipo_transacao`
 --
 ALTER TABLE `tipo_transacao`
   ADD PRIMARY KEY (`tipo_id`);
 
 --
--- Indexes for table `transacao`
+-- Índices para tabela `transacao`
 --
 ALTER TABLE `transacao`
   ADD PRIMARY KEY (`tran_id`),
@@ -106,61 +138,57 @@ ALTER TABLE `transacao`
   ADD KEY `transacao_ibfk_1` (`uso_id`);
 
 --
--- Indexes for table `usuario`
+-- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`uso_id`),
   ADD UNIQUE KEY `uso_nome` (`uso_nome`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `endereco`
+-- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tipo_transacao`
+-- AUTO_INCREMENT de tabela `tipo_transacao`
 --
 ALTER TABLE `tipo_transacao`
-  MODIFY `tipo_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `transacao`
+-- AUTO_INCREMENT de tabela `transacao`
 --
 ALTER TABLE `transacao`
-  MODIFY `tran_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `uso_id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `uso_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
--- Constraints for table `endereco`
+-- Limitadores para a tabela `endereco`
 --
 ALTER TABLE `endereco`
   ADD CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`uso_id`) REFERENCES `usuario` (`uso_id`);
 
 --
--- Constraints for table `transacao`
+-- Limitadores para a tabela `transacao`
 --
 ALTER TABLE `transacao`
-  ADD CONSTRAINT `transacao_ibfk_1` FOREIGN KEY (`uso_id`) REFERENCES `usuario` (`uso_id`);
+  ADD CONSTRAINT `transacao_ibfk_1` FOREIGN KEY (`uso_id`) REFERENCES `usuario` (`uso_id`),
   ADD CONSTRAINT `transacao_ibfk_2` FOREIGN KEY (`tipo_id`) REFERENCES `tipo_transacao` (`tipo_id`);
 COMMIT;
-
-INSERT INTO `tipo_transacao` (`tipo_id`, `tipo_nome`) VALUES
-(1, 'despesa'),
-(2, 'receita');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
