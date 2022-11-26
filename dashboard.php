@@ -1,10 +1,11 @@
 <?php
+
 session_start();
+require_once('connection.php');
+require_once("config.php");
+
 ?>
 
-<?php
-require_once("config.php");
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,31 +27,22 @@ require_once("config.php");
 
 <body>
     <?php require("menu_lateral.php");
-
     if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         header("location: login.php");
         exit;
     }
-
     $dataCompleta = date("Y-m");
     $data = [date("Y"), date("m")];
     if (isset($_POST['mes_ano'])) {
         $dataCompleta  = $_POST['mes_ano'];
         $data = explode('-', $_POST['mes_ano']);
     }
-
-    require_once('connection.php');
-
-    // Mysql query to select data from table
     $mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
     $result = $conn->query($mysql_query);
 
     $mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
     $result2 = $conn->query($mysql_query);
 
-
-
-    //Connection Close
     mysqli_close($conn);
     ?>
 
@@ -74,6 +66,7 @@ require_once("config.php");
         <div class="navigation">
             <div class="profile">
                 <img src="./img/man.png" alt="">
+                <p><?php echo "Olá, ", $_SESSION['uso_nome'] ?></p>
             </div>
         </div>
 
@@ -89,7 +82,7 @@ require_once("config.php");
         <br></br>
         <div class="values">
             <div class="row">
-                <div class="col">
+                <div class="col mb-2">
                     <div class="card h-100">
                         <div class="card-body">
                             <i class="las la-long-arrow-alt-up"></i>
@@ -98,7 +91,7 @@ require_once("config.php");
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col mb-2">
                     <div class="card h-100">
                         <div class="card-body">
                             <i class="las la-arrow-down"></i>
@@ -108,7 +101,7 @@ require_once("config.php");
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col mb-2">
                     <div class="card h-100">
                         <div class="card-body">
                             <i class="las la-wallet"></i>
@@ -120,8 +113,6 @@ require_once("config.php");
             </div>
         </div>
     </section>
-
-
 </body>
 
 </html>
