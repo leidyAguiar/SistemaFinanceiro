@@ -32,11 +32,11 @@ require_once("config.php");
         <div class="row">
             <aside class="col-xl-6 col-12">
                 <h2>Sejam bem-vindos e conheçam NuAzul</h2>
-                <p>NuAzul foi desenvolvido para você, que deseja dar um Up em sua vida financeira, organizando suas contas com um sistema que atende as suas necessidades</p>
+                <p style="margin: 20px 0">NuAzul foi desenvolvido para você, que deseja dar um Up em sua vida financeira, organizando suas contas com um sistema que atende as suas necessidades</p>
             </aside>
             <div class="col-xl-6 col-12">
                 <img src="./img/home.png" alt="">
-            </div>        
+            </div>
         </div>
     </main>
 

@@ -1,14 +1,11 @@
 <?php
+
 session_start();
-
 require_once("enum.php");
-
 require_once("connection.php");
-
 require_once("config.php");
 
 
-// Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
@@ -28,13 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tran_descricao = $_POST['tran_descricao'];
         $uso_id = $_SESSION['uso_id'];
 
-        // Mysql query to insert record into table
-
         $mysql_query = "INSERT INTO transacao (uso_id, tran_data, tran_valor, tran_descricao, tipo_id) VALUES ('{$uso_id}', '{$tran_data}', '{$tran_valor}', '{$tran_descricao}', " . TipoTransacao::DESPESA->value . ")";
 
         $result = $conn->query($mysql_query);
-
-
 
         if ($result === TRUE) {
             $msg =  "insert success";
@@ -44,9 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $msgerror = $conn->error;
         }
 
-        //Connection Close
         mysqli_close($conn);
-
 
         header("Location: despesas.php?msg={$msg}&msgerror={$msgerror}");
     } else {

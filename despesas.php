@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-
 require_once("enum.php");
 require_once("config.php");
+require_once('connection.php');
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   header("location: login.php");
@@ -16,45 +16,17 @@ $dataCompleta = date("Y-m");
         $dataCompleta  = $_POST['mes_ano'];
         $data = explode('-', $_POST['mes_ano']);
     }
-
-    require_once('connection.php');
     $mysql_query = "SELECT  tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 
     AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
     
-    // $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::RECEITA->value;
     $result = $conn->query($mysql_query);   
-// $mes = $ano = "";
-// $mes_err = $ano_err = "";
 
-// $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " ORDER BY tran_data DESC";
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//   $mes = trim($_POST['mes']);
-
-//   if (empty($mes) || $mes == "0") {
-//     $mes_err = "Por favor, informe o mês.";
-//   }
-
-//   $ano = trim($_POST['ano']);
-//   if (empty($ano) || $ano == "0") {
-//     $ano_err = "Por favor, informe o ano.";
-//   } else {
-//     $mes = $mes;
-//   }
-//   if (empty($mes_err) && empty($ano_err)) {
-//     $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " AND MONTH(tran_data) = {$mes} AND YEAR(tran_data) = {$ano} ORDER BY tran_data DESC";
-//   }
-// }
-
-// $result = $conn->query($mysql_query);
 
 mysqli_close($conn);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,12 +39,8 @@ mysqli_close($conn);
   <link href="./css/style-dashboard.css" rel="stylesheet">
   <!--Icon-->
   <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
-
-
   <!--Icones da tela-->
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-
-
 
 </head>
 
