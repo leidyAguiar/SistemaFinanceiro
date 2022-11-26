@@ -75,7 +75,7 @@ mysqli_close($conn);
           <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
               <td style="text-align:center"><?php echo $row['tran_id']; ?></td>
-              <td><?php echo $row['tran_descricao']; ?></td>
+              <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
               <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
               <td style="text-align:center">R$ <?= number_format($row['tran_valor'], 2, ',', '.' ); ?></td>
               <td>
