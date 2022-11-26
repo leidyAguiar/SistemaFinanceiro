@@ -78,8 +78,8 @@ mysqli_close($conn);
               <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
               <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
               <td style="text-align:center">R$ <?= number_format($row['tran_valor'], 2, ',', '.' ); ?></td>
-              <td>
-                <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-a">Editar</button></a>
+              <td style="text-align:center">
+                <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
                 <a href="delete_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
               </td>
             </tr>
