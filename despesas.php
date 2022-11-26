@@ -3,8 +3,6 @@
 session_start();
 
 require_once("enum.php");
-require_once('connection.php');
-
 require_once("config.php");
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -12,30 +10,43 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   exit;
 }
 
-$mes = $ano = "";
-$mes_err = $ano_err = "";
+$dataCompleta = date("Y-m");
+    $data = [date("Y"), date("m")];
+    if (isset($_POST['mes_ano'])) {
+        $dataCompleta  = $_POST['mes_ano'];
+        $data = explode('-', $_POST['mes_ano']);
+    }
 
-$mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " ORDER BY tran_data DESC";
+    require_once('connection.php');
+    $mysql_query = "SELECT  tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 
+    AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
+    
+    // $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::RECEITA->value;
+    $result = $conn->query($mysql_query);   
+// $mes = $ano = "";
+// $mes_err = $ano_err = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $mes = trim($_POST['mes']);
+// $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " ORDER BY tran_data DESC";
 
-  if (empty($mes) || $mes == "0") {
-    $mes_err = "Por favor, informe o mês.";
-  }
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//   $mes = trim($_POST['mes']);
 
-  $ano = trim($_POST['ano']);
-  if (empty($ano) || $ano == "0") {
-    $ano_err = "Por favor, informe o ano.";
-  } else {
-    $mes = $mes;
-  }
-  if (empty($mes_err) && empty($ano_err)) {
-    $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " AND MONTH(tran_data) = {$mes} AND YEAR(tran_data) = {$ano} ORDER BY tran_data DESC";
-  }
-}
+//   if (empty($mes) || $mes == "0") {
+//     $mes_err = "Por favor, informe o mês.";
+//   }
 
-$result = $conn->query($mysql_query);
+//   $ano = trim($_POST['ano']);
+//   if (empty($ano) || $ano == "0") {
+//     $ano_err = "Por favor, informe o ano.";
+//   } else {
+//     $mes = $mes;
+//   }
+//   if (empty($mes_err) && empty($ano_err)) {
+//     $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::DESPESA->value . " AND MONTH(tran_data) = {$mes} AND YEAR(tran_data) = {$ano} ORDER BY tran_data DESC";
+//   }
+// }
+
+// $result = $conn->query($mysql_query);
 
 mysqli_close($conn);
 ?>
@@ -73,7 +84,7 @@ mysqli_close($conn);
       <p>Listagem de despesas cadastradas.</p>
       <hr>
       <br></br>
-      <div class="float-right p-1">
+      <!-- <div class="float-right p-1">
         <form method="post">
           <div>
             <label for="mes">Mês</label>
@@ -110,11 +121,17 @@ mysqli_close($conn);
           </br>
           <div class="form-group">
             <input type="submit" class=" btn btn-primary-acao" value="Filtrar">
-          </div>
+          </div> -->
           <br></br>
+          <form class="data" method="post">
+            <h4 class="tituloData">Selecione uma data</h4>
+            <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
+            <input type="submit" value="buscar">
+        </form>
         </form>
         <a href="./insert_despesa.php"><button type="button" class="btn btn-primary-acao">+ Novo</button></a>
       </div>
+      
       <table class="table table-striped table-bordered table-hover">
 
         <thead>
