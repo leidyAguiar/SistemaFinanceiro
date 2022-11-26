@@ -1,15 +1,8 @@
 <?php
 
 session_start();
-
 require_once("enum.php");
-
 require_once("config.php");
-
-?>
-
-<?php
-
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   header("location: login.php");
@@ -17,20 +10,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 
 $dataCompleta = date("Y-m");
-    $data = [date("Y"), date("m")];
-    if (isset($_POST['mes_ano'])) {
-        $dataCompleta  = $_POST['mes_ano'];
-        $data = explode('-', $_POST['mes_ano']);
-    }
-
+$data = [date("Y"), date("m")];
+if (isset($_POST['mes_ano'])) {
+  $dataCompleta  = $_POST['mes_ano'];
+  $data = explode('-', $_POST['mes_ano']);
+}
 
 require_once('connection.php');
 $mysql_query = "SELECT  tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 
 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
 
-// $mysql_query = "SELECT tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = " . TipoTransacao::RECEITA->value;
 $result = $conn->query($mysql_query);
-
 
 mysqli_close($conn);
 ?>
@@ -62,10 +52,10 @@ mysqli_close($conn);
       <p>Listagem de receitas cadastradas.</p>
       <hr>
       <form class="data" method="post">
-            <h4 class="tituloData">Selecione uma data</h4>
-            <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
-            <input type="submit" value="buscar">
-        </form>
+        <h4 class="tituloData">Selecione uma data</h4>
+        <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
+        <input type="submit" value="buscar">
+      </form>
 
       <br></br>
       <div class="float-right p-1">
@@ -84,13 +74,13 @@ mysqli_close($conn);
         <tbody>
           <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
-              <td style="text-align:center"><?php echo $row['tran_id']; ?></td> 
-              <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
-              <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
-              <td style="text-align:center">R$ <?php echo number_format($row['tran_valor'],2,',', '.'); ?></td>
+              <td style="text-align:center"><?= $row['tran_id']; ?></td>
+              <td style="text-align:center"><?= $row['tran_descricao']; ?></td>
+              <td style="text-align:center"><?= date("d/m/Y", strtotime($row['tran_data'])); ?></td>
+              <td style="text-align:center">R$ <?= number_format($row['tran_valor'], 2, ',', '.'); ?></td>
               <td style="text-align:center">
-                <a href="edit_receita.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
-                <a href="delete_receita.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
+                <a href="edit_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
+                <a href="delete_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
               </td>
             </tr>
           <?php } ?>
