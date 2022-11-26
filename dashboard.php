@@ -74,6 +74,7 @@ require_once("config.php");
         <div class="navigation">
             <div class="profile">
                 <img src="./img/man.png" alt="">
+                <p><?php echo "Olá, ", $_SESSION['uso_nome'] ?></p>
             </div>
         </div>
 
@@ -89,16 +90,16 @@ require_once("config.php");
         <br></br>
         <div class="values">
             <div class="row">
-                <div class="col">
+                <div class="col mb-2">
                     <div class="card h-100">
-                        <div class="card-body">
+                        <div class="card-body" >
                             <i class="las la-long-arrow-alt-up"></i>
                             <span>Receita</span>
                             <h3>R$ <?= number_format($total_receita, 2, ',', '.'); ?></h3>
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col mb-2">
                     <div class="card h-100">
                         <div class="card-body">
                             <i class="las la-arrow-down"></i>
@@ -108,7 +109,7 @@ require_once("config.php");
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col mb-2">
                     <div class="card h-100">
                         <div class="card-body">
                             <i class="las la-wallet"></i>

@@ -83,54 +83,15 @@ mysqli_close($conn);
       <h2 class="signin-text mb-3">Despesas</h2>
       <p>Listagem de despesas cadastradas.</p>
       <hr>
-      <br></br>
-      <!-- <div class="float-right p-1">
-        <form method="post">
-          <div>
-            <label for="mes">Mês</label>
-            <select class="form-select form-control required <?php echo (!empty($ano_err)) ? 'is-invalid' : ''; ?>" style="width: 200px;" name="mes" id="mes" required>
-              <option value="0"> Escolha o Mês</option>
-              <option value="1" <?= $mes === "1" ? "selected" : "" ?>>Janeiro</option>
-              <option value="2" <?= $mes === "2" ? "selected" : "" ?>>Fevereiro</option>
-              <option value="3" <?= $mes === "3" ? "selected" : "" ?>>Março</option>
-              <option value="4" <?= $mes === "4" ? "selected" : "" ?>>Abril</option>
-              <option value="5" <?= $mes === "5" ? "selected" : "" ?>>Maio</option>
-              <option value="6" <?= $mes === "6" ? "selected" : "" ?>>Junho</option>
-              <option value="7" <?= $mes === "7" ? "selected" : "" ?>>Julho</option>
-              <option value="8" <?= $mes === "8" ? "selected" : "" ?>>Agosto</option>
-              <option value="9" <?= $mes === "9" ? "selected" : "" ?>>Setembro</option>
-              <option value="10" <?= $mes === "10" ? "selected" : "" ?>>Outubro</option>
-              <option value="11" <?= $mes === "11" ? "selected" : "" ?>>Novembro</option>
-              <option value="12" <?= $mes === "12" ? "selected" : "" ?>>Dezembro</option>
-            </select>
-            <span class="invalid-feedback"><?php echo $mes_err; ?></span>
-          </div>
-          <div>
-            <label for="ano">Ano</label>
-            <select class="form-select form-control required <?php echo (!empty($ano_err)) ? 'is-invalid' : ''; ?>" style="width: 200px;" name="ano" id="ano" required>
-              <option value="0"> Escolha o Ano</option>
-              <option value="2023" <?= $ano === "2023" ? "selected" : "" ?>>2023</option>
-              <option value="2022" <?= $ano === "2022" ? "selected" : "" ?>>2022</option>
-              <option value="2021" <?= $ano === "2021" ? "selected" : "" ?>>2021</option>
-              <option value="2020" <?= $ano === "2020" ? "selected" : "" ?>>2020</option>
-              <option value="2019" <?= $ano === "2019" ? "selected" : "" ?>>2019</option>
-              <option value="2018" <?= $ano === "2018" ? "selected" : "" ?>>2018</option>
-            </select>
-            <span class="invalid-feedback"><?php echo $ano_err; ?></span>
-          </div>
-          </br>
-          <div class="form-group">
-            <input type="submit" class=" btn btn-primary-acao" value="Filtrar">
-          </div> -->
-          <br></br>
           <form class="data" method="post">
             <h4 class="tituloData">Selecione uma data</h4>
             <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
             <input type="submit" value="buscar">
         </form>
-        </form>
+        <br></br>
+        <div class="float-right p-1">
         <a href="./insert_despesa.php"><button type="button" class="btn btn-primary-acao">+ Novo</button></a>
-      </div>
+        </div>
       
       <table class="table table-striped table-bordered table-hover">
 
@@ -149,7 +110,7 @@ mysqli_close($conn);
               <td style="text-align:center"><?php echo $row['tran_id']; ?></td>
               <td><?php echo $row['tran_descricao']; ?></td>
               <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
-              <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
+              <td style="text-align:center">R$ <?= number_format($row['tran_valor'], 2, ',', '.' ); ?></td>
               <td>
                 <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-a">Editar</button></a>
                 <a href="delete_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>

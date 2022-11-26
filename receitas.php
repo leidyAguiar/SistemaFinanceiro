@@ -84,13 +84,13 @@ mysqli_close($conn);
         <tbody>
           <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
-              <td style="text-align:center"><?php echo $row['tran_id']; ?></td> 
-              <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
-              <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
-              <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
+              <td style="text-align:center"><?= $row['tran_id']; ?></td> 
+              <td style="text-align:center"><?= $row['tran_descricao']; ?></td>
+              <td style="text-align:center"><?= date("d/m/Y", strtotime($row['tran_data'])); ?></td>
+              <td style="text-align:center">R$ <?= number_format($row['tran_valor'], 2, ',', '.' ); ?></td>
               <td style="text-align:center">
-                <a href="edit_receita.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
-                <a href="delete_receita.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
+                <a href="edit_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
+                <a href="delete_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
               </td>
             </tr>
           <?php } ?>
