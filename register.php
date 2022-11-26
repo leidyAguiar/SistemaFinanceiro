@@ -2,6 +2,9 @@
 
 require_once("connection.php");
 
+require_once("config.php");
+
+
 $username = $password = $email =  $confirm_password = "";
 $username_err = $password_err = $email_err = $confirm_password_err = "";
 $cep = $logradouro = $numero = $bairro = $cidade = $estado = "";
@@ -104,13 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<?php
-require_once("config.php");
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -123,9 +121,7 @@ require_once("config.php");
     <!--Icon-->
     <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
 </head>
-
 <body>
-
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
@@ -144,7 +140,6 @@ require_once("config.php");
             <div class="col-md-6">
                 <h2 class="signin-text mb-3"> Criar Conta</h2>
                 <p>Por favor, preencha os campos do formulário para criar a sua conta</p>
-
                 <div>
                     <form method="post">
                         <div>
