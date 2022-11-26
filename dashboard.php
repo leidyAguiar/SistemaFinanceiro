@@ -25,7 +25,7 @@ require_once("config.php");
 </head>
 
 <body>
-    <?php require("menu_lateral.php"); 
+    <?php require("menu_lateral.php");
 
     if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         header("location: login.php");
@@ -34,37 +34,37 @@ require_once("config.php");
 
     $dataCompleta = date("Y-m");
     $data = [date("Y"), date("m")];
-    if (isset($_POST['mes_ano'])){
+    if (isset($_POST['mes_ano'])) {
         $dataCompleta  = $_POST['mes_ano'];
         $data = explode('-', $_POST['mes_ano']);
     }
 
     require_once('connection.php');
 
-// Mysql query to select data from table
-$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
-$result = $conn->query($mysql_query);
+    // Mysql query to select data from table
+    $mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
+    $result = $conn->query($mysql_query);
 
-$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}" ;
-$result2 = $conn->query($mysql_query);
+    $mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
+    $result2 = $conn->query($mysql_query);
 
 
 
-//Connection Close
-mysqli_close($conn);
-?>
+    //Connection Close
+    mysqli_close($conn);
+    ?>
 
-<?php 
-    $data_hoje= date("Y-m");
+    <?php
+    $data_hoje = date("Y-m");
 
     $total_despesa = 0;
-    while ($row = $result->fetch_assoc()) { 
-      $total_despesa= $total_despesa + $row['tran_valor'];
+    while ($row = $result->fetch_assoc()) {
+        $total_despesa = $total_despesa + $row['tran_valor'];
     }
 
     $total_receita = 0;
-    while ($row = $result2->fetch_assoc()) { 
-      $total_receita = $total_receita + $row['tran_valor'];
+    while ($row = $result2->fetch_assoc()) {
+        $total_receita = $total_receita + $row['tran_valor'];
     }
 
     $saldo_atual = $total_receita - $total_despesa;
@@ -83,42 +83,41 @@ mysqli_close($conn);
 
         <form class="data" method="post">
             <h4 class="tituloData">Selecione uma data</h4>
-            <input type="month"id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
+            <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
             <input type="submit" value="buscar">
-
         </form>
-
-
+        <br></br>
         <div class="values">
-        <div class="row">
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                    <i class="las la-wallet"></i>
-                        <span>Saldo atual</span>
-                        <h3><?php echo $saldo_atual?></h3>
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="las la-long-arrow-alt-up"></i>
+                            <span>Receita</span>
+                            <h3>R$ <?php echo $total_receita ?></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="las la-arrow-down"></i>
+                            <span>Despesas</span>
+                            <h3>R$ <?php echo $total_despesa ?></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="las la-wallet"></i>
+                            <span>Saldo atual</span>
+                            <h3>R$ <?php echo $saldo_atual ?></h3>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <i class="las la-long-arrow-alt-up"></i>
-                        <span>Receita</span>
-                        <h3><?php echo $total_receita ?></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <i class="las la-arrow-down"></i> 
-                        <span>Despesas</span>
-                        <h3><?php echo $total_despesa ?></h3>
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </section>
 

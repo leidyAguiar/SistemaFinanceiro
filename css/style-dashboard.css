@@ -85,7 +85,7 @@ body{
 #interface{
     width: calc(100% - 300px);
     margin-left: 300px;
-    position: relative;
+    position: fixed;
 }
 
 #interface .navigation{
@@ -96,24 +96,6 @@ body{
     border-bottom: 3px solid #5f95e7;
 }
 
-/* #interface .navigation .search{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px 14px;
-    border:  1px solid #030c4c;
-    border-radius: 4px;
-}
-
-#interface .navigation .search i{
-    margin-right: 14px;
-}
-
-#interface .navigation .search input{
-    border: none;
-    outline: none;
-    font-size: 14px;
-} */
 
 #interface .navigation .profile{
     display: flex;
@@ -142,7 +124,7 @@ body{
 }
 
 .values .row{
-    margin: 70px;
+    margin: 10px;
 }
 
 .values .card-body{
@@ -152,8 +134,6 @@ body{
     align-items: center;
     padding: 4rem 4rem 3rem 4rem;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, .05);
-    
-    
 }
 
 .values .card-body i{
@@ -196,7 +176,6 @@ body{
     text-align: center;
     margin-top: 30px;
     border-color: #030c4c;
-    /* margin: left 250px; */
     font-size: 20px;
     color: #030c4c;
 }
@@ -307,7 +286,7 @@ aside {
     font-style: normal;
     font-weight: 600 !important;
     color: #030c4c;
-    margin-top: 70px;
+    margin-top: 0px;
 }
 
 
@@ -323,15 +302,15 @@ aside {
     margin: 0px 15px 0px 10px;
 }
 
-.btn-danger {
+/* .btn-danger {
     background-color: #dc143c;
     color: #ebeff0;
     border-radius: 10px;
     border-width: 1px 1px 1px 1px #dc143c;
     margin: 0px 15px 0px 10px;
-}
+} */
 
-.table{
+/* .table{
     margin-top: 40px;
     font-size: 17px;
 }
@@ -339,4 +318,10 @@ aside {
 .table-info{
     background-color: #bbd5f9;
     color: #030c4c;
+} */
+
+.btn-primary-a{
+    background-color: #030c4c;
+    color: #ebeff0;
+    
 }

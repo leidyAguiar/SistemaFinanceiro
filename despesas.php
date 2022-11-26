@@ -109,9 +109,9 @@ mysqli_close($conn);
           </div>
           </br>
           <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Filtrar">
+            <input type="submit" class=" btn btn-primary-acao" value="Filtrar">
           </div>
-          </br>
+          <br></br>
         </form>
         <a href="./insert_despesa.php"><button type="button" class="btn btn-primary-acao">+ Novo</button></a>
       </div>
@@ -130,11 +130,11 @@ mysqli_close($conn);
           <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
               <td style="text-align:center"><?php echo $row['tran_id']; ?></td>
-              <td style="text-align:center"><?php echo $row['tran_descricao']; ?></td>
+              <td><?php echo $row['tran_descricao']; ?></td>
               <td style="text-align:center"><?php echo date("d/m/Y", strtotime($row['tran_data'])); ?></td>
               <td style="text-align:center"><?php echo $row['tran_valor']; ?></td>
-              <td style="display:flex;">
-                <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
+              <td>
+                <a href="edit_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-primary-a">Editar</button></a>
                 <a href="delete_despesa.php?tran_id=<?php echo $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
               </td>
             </tr>
