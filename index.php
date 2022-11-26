@@ -17,7 +17,7 @@ require_once("config.php");
     <link href="./img/dolar.png" rel="shortcut icon" type="image/x-icon">
 </head>
 
-<body>
+<body >
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
@@ -28,12 +28,16 @@ require_once("config.php");
             <li><a href="./login.php">Login</a></li>
         </ul>
     </nav>
-    <main class="align-content-center d-flex justify-content-center p-5">
-        <aside>
-            <h2>Sejam bem-vindos e conheçam NuAzul</h2>
-            <p>NuAzul foi desenvolvido para você, que deseja dar um Up em sua vida financeira, organizando suas contas com um sistema que atende as suas necessidades</p>
-        </aside>
-        <img src="./img/home.png" alt="">
+    <main class="container align-content-center d-flex justify-content-center p-5">
+        <div class="row">
+            <aside class="col-xl-6 col-12">
+                <h2>Sejam bem-vindos e conheçam NuAzul</h2>
+                <p style="margin: 20px 0">NuAzul foi desenvolvido para você, que deseja dar um Up em sua vida financeira, organizando suas contas com um sistema que atende as suas necessidades</p>
+            </aside>
+            <div class="col-xl-6 col-12">
+                <img src="./img/home.png" alt="">
+            </div>
+        </div>
     </main>
 
 </body>
