@@ -1,8 +1,7 @@
 <?php
+
 session_start();
-
 require_once("connection.php");
-
 require_once("config.php");
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -12,7 +11,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 $new_tran_data = $new_tran_valor = $new_tran_descricao = "";
 $new_tran_data_err = $new_tran_valor_err = $new_tran_descricao_err = "";
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['enviar'])) {
@@ -37,9 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $param_tran_descricao = $new_tran_descricao;
 
                 if (mysqli_stmt_execute($stm)) {
-
-                    
-
                     header("Location: despesas.php?msg={$msg}&msgerror={$msgerror}");
                     exit();
                 } else {
@@ -81,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
