@@ -30,6 +30,20 @@ CREATE DATABASE financeiro;
 
 USE financeiro;
 
+CREATE TABLE `contatos` (
+  `con_id` int(11) NOT NULL,
+  `uso_id` int(11) NOT NULL,
+  `con_msg` varchar(255) NOT NULL,
+  `con_titulo` varchar(50) NOT NULL,
+  `con_lida` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `endereco`
+--
+
 CREATE TABLE `endereco` (
   `end_id` int(11) NOT NULL,
   `uso_id` int(11) NOT NULL,
@@ -46,7 +60,8 @@ CREATE TABLE `endereco` (
 --
 
 INSERT INTO `endereco` (`end_id`, `uso_id`, `end_num`, `end_bairro`, `end_logradouro`, `end_cep`, `end_cidade`, `end_uf`) VALUES
-(1, 1, 75, 'Vila Paulo Roberto', 'Rua Teresina', '19046-230', 'Presidente Prudente', 'sp');
+(1, 1, 75, 'Vila Paulo Roberto', 'Rua Teresina', '19046-230', 'Presidente Prudente', 'sp'),
+(2, 2, 100, 'Bobo bobo', 'Rua do bobo', '7777777', 'Bobo', 'ce');
 
 -- --------------------------------------------------------
 
@@ -66,6 +81,25 @@ CREATE TABLE `tipo_transacao` (
 INSERT INTO `tipo_transacao` (`tipo_id`, `tipo_nome`) VALUES
 (1, 'despesa'),
 (2, 'receita');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipo_usuario`
+--
+
+CREATE TABLE `tipo_usuario` (
+  `tus_id` int(11) NOT NULL,
+  `tus_nome` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tipo_usuario`
+--
+
+INSERT INTO `tipo_usuario` (`tus_id`, `tus_nome`) VALUES
+(1, 'admin'),
+(2, 'comum');
 
 -- --------------------------------------------------------
 
@@ -90,7 +124,9 @@ INSERT INTO `transacao` (`tran_id`, `tipo_id`, `uso_id`, `tran_data`, `tran_valo
 (1, 2, 1, '2022-11-25 00:00:00', 1000, 'Estágio'),
 (2, 2, 1, '2022-12-01 00:00:00', 1000, 'Salário'),
 (3, 1, 1, '2022-11-25 00:00:00', 100, 'Amazon Prime'),
-(4, 1, 1, '2022-12-01 00:00:00', 20, 'Uber');
+(4, 1, 1, '2022-12-01 00:00:00', 20, 'Uber'),
+(5, 1, 1, '2022-12-03 00:00:00', 80, 'mercantil'),
+(6, 1, 1, '2022-12-02 00:00:00', 100, 'aaa');
 
 -- --------------------------------------------------------
 
@@ -102,19 +138,28 @@ CREATE TABLE `usuario` (
   `uso_id` int(50) NOT NULL,
   `uso_nome` varchar(50) NOT NULL,
   `uso_email` varchar(50) NOT NULL,
-  `uso_senha` varchar(255) NOT NULL
+  `uso_senha` varchar(255) NOT NULL,
+  `tus_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`uso_id`, `uso_nome`, `uso_email`, `uso_senha`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$EEgGRPcfKYZPGTtxpVo6VeIXfdT.iiByVvq39xTi.TO.//XNTlqcu');
+INSERT INTO `usuario` (`uso_id`, `uso_nome`, `uso_email`, `uso_senha`, `tus_id`) VALUES
+(1, 'admin', 'admin@gmail.com', '$2y$10$EEgGRPcfKYZPGTtxpVo6VeIXfdT.iiByVvq39xTi.TO.//XNTlqcu', 1),
+(2, 'comum', 'comum@gmail.com', '$2y$10$ZtYuYYkS.VKUlt8.ue.FY.whcomtzt1Hg1rq4c9aNKd7q24ltlVZa', 2);
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `contatos`
+--
+ALTER TABLE `contatos`
+  ADD PRIMARY KEY (`con_id`),
+  ADD KEY `uso_id` (`uso_id`);
 
 --
 -- Índices para tabela `endereco`
@@ -130,6 +175,12 @@ ALTER TABLE `tipo_transacao`
   ADD PRIMARY KEY (`tipo_id`);
 
 --
+-- Índices para tabela `tipo_usuario`
+--
+ALTER TABLE `tipo_usuario`
+  ADD PRIMARY KEY (`tus_id`);
+
+--
 -- Índices para tabela `transacao`
 --
 ALTER TABLE `transacao`
@@ -142,17 +193,24 @@ ALTER TABLE `transacao`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`uso_id`),
-  ADD UNIQUE KEY `uso_nome` (`uso_nome`);
+  ADD UNIQUE KEY `uso_nome` (`uso_nome`),
+  ADD KEY `tus_id` (`tus_id`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
+-- AUTO_INCREMENT de tabela `contatos`
+--
+ALTER TABLE `contatos`
+  MODIFY `con_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_transacao`
@@ -161,20 +219,32 @@ ALTER TABLE `tipo_transacao`
   MODIFY `tipo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `tipo_usuario`
+--
+ALTER TABLE `tipo_usuario`
+  MODIFY `tus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `transacao`
 --
 ALTER TABLE `transacao`
-  MODIFY `tran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `uso_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `uso_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `contatos`
+--
+ALTER TABLE `contatos`
+  ADD CONSTRAINT `contatos_ibfk_1` FOREIGN KEY (`uso_id`) REFERENCES `usuario` (`uso_id`);
 
 --
 -- Limitadores para a tabela `endereco`
@@ -188,6 +258,12 @@ ALTER TABLE `endereco`
 ALTER TABLE `transacao`
   ADD CONSTRAINT `transacao_ibfk_1` FOREIGN KEY (`uso_id`) REFERENCES `usuario` (`uso_id`),
   ADD CONSTRAINT `transacao_ibfk_2` FOREIGN KEY (`tipo_id`) REFERENCES `tipo_transacao` (`tipo_id`);
+
+--
+-- Limitadores para a tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tus_id`) REFERENCES `tipo_usuario` (`tus_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

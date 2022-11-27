@@ -1,10 +1,10 @@
 <?php
 
 require_once("connection.php");
-
 require_once("config.php");
+require_once("enum.php");
 
-
+$tipo_usuario = TipoUsuario::COMUM->value;
 $username = $password = $email =  $confirm_password = "";
 $username_err = $password_err = $email_err = $confirm_password_err = "";
 $cep = $logradouro = $numero = $bairro = $cidade = $estado = "";
@@ -71,14 +71,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirm_password_err = "As senhas digitadas não conferem.";
     }
     if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
-        $sql = "INSERT INTO usuario (uso_nome, uso_senha, uso_email) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO usuario (uso_nome, uso_senha, uso_email, tus_id) VALUES (?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($conn, $sql)) {
-            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $param_email);
+            mysqli_stmt_bind_param($stmt, "sssi", $param_username, $param_password, $param_email, $param_tipo_usuario);
 
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
             $param_email = $email;
+            $param_tipo_usuario = $tipo_usuario;
 
             if (mysqli_stmt_execute($stmt)) {
                 $userId = mysqli_insert_id($conn);
