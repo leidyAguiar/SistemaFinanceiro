@@ -35,6 +35,9 @@ require_once("config.php");
                 <a href="./administrador.php"><i class="las la-comment"></i>Mensagens</a>
             </li>
             <li>
+                <a href="./adm_alterar_cadastro.php"><i class="las la-cog"></i>Configurações</a>
+            </li>
+            <li>
                 <a href="./logout.php"><i class="las la-power-off"></i>Logout</a>
             </li>
         </div>
@@ -43,7 +46,7 @@ require_once("config.php");
     <section id="interface" style="margin-left:300px">
         <div class="navigation">
             <div class="profile">
-                <img src="./img/man.png" alt="">
+                <img src="./img/usuario.png" alt="">
                 <p><?php echo "Olá, ", $_SESSION['uso_nome'] ?></p>
             </div>
     </section>
@@ -64,13 +67,13 @@ require_once("config.php");
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                            <td style="text-align:center"></td>
-                            <td style="text-align:center"></td>
-                            <td style="text-align:center">
-                                <a href="#"><button type="button" class="btn btn-danger">Excluir</button></a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td style="text-align:center"></td>
+                        <td style="text-align:center"></td>
+                        <td style="text-align:center">
+                            <a href="#"><button type="button" class="btn btn-danger">Excluir</button></a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

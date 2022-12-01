@@ -65,7 +65,7 @@ require_once("config.php");
     <section id="interface" style="margin-left:300px">
         <div class="navigation">
             <div class="profile">
-                <img src="./img/man.png" alt="">
+                <img src="./img/usuario.png" alt="">
                 <p><?php echo "Olá, ", $_SESSION['uso_nome'] ?></p>
             </div>
         </div>
