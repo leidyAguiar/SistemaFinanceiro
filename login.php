@@ -3,12 +3,12 @@
 session_start();
 require_once("config.php");
 require_once("connection.php");
+require_once("enum.php");
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: dashboard.php");
     exit;
 }
-
 
 
 $username = $password = "";
@@ -29,14 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($username_err) && empty($password_err)) {
-        $sql = "SELECT uso_id, uso_nome, uso_senha  FROM usuario WHERE uso_nome = ?";
+        $sql = "SELECT uso_id, uso_nome, uso_senha, tus_id FROM usuario WHERE uso_nome = ?";
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             $param_username = $username;
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_store_result($stmt);
                 if (mysqli_stmt_num_rows($stmt) == 1) {
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $tus_id);
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
                             session_start();
@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["loggedin"] = true;
                             $_SESSION["uso_id"] = $id;
                             $_SESSION["uso_nome"] = $username;
+                            $_SESSION["tipo_usuario"] = $tus_id;
 
                             header("location: dashboard.php");
                         } else {

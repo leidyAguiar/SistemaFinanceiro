@@ -25,24 +25,8 @@ require_once("config.php");
 </head>
 
 <body>
-    <section id="menu">
-        <div class="logo">
-            <img src="./img/logoDinheiro.png" alt="">
-            <h2>NuAzul<h2>
-        </div>
-        <div class="itens">
-            <li>
-                <a href="./administrador.php"><i class="las la-comment"></i>Mensagens</a>
-            </li>
-            <li>
-                <a href="./adm_alterar_cadastro.php"><i class="las la-cog"></i>Configurações</a>
-            </li>
-            <li>
-                <a href="./logout.php"><i class="las la-power-off"></i>Logout</a>
-            </li>
-        </div>
-    </section>
-
+    <?php require("menu_lateral.php");
+    ?>
     <section id="interface" style="margin-left:300px">
         <div class="navigation">
             <div class="profile">

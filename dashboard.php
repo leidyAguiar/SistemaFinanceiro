@@ -4,6 +4,39 @@ session_start();
 require_once('connection.php');
 require_once("config.php");
 
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
+$dataCompleta = date("Y-m");
+$data = [date("Y"), date("m")];
+if (isset($_POST['mes_ano'])) {
+    $dataCompleta  = $_POST['mes_ano'];
+    $data = explode('-', $_POST['mes_ano']);
+}
+$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
+$result = $conn->query($mysql_query);
+
+$mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
+$result2 = $conn->query($mysql_query);
+
+mysqli_close($conn);
+?>
+
+<?php
+$data_hoje = date("Y-m");
+
+$total_despesa = 0;
+while ($row = $result->fetch_assoc()) {
+    $total_despesa = $total_despesa + $row['tran_valor'];
+}
+
+$total_receita = 0;
+while ($row = $result2->fetch_assoc()) {
+    $total_receita = $total_receita + $row['tran_valor'];
+}
+
+$saldo_atual = $total_receita - $total_despesa;
 ?>
 
 <!DOCTYPE html>
@@ -27,40 +60,6 @@ require_once("config.php");
 
 <body>
     <?php require("menu_lateral.php");
-    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-        header("location: login.php");
-        exit;
-    }
-    $dataCompleta = date("Y-m");
-    $data = [date("Y"), date("m")];
-    if (isset($_POST['mes_ano'])) {
-        $dataCompleta  = $_POST['mes_ano'];
-        $data = explode('-', $_POST['mes_ano']);
-    }
-    $mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 1 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
-    $result = $conn->query($mysql_query);
-
-    $mysql_query = "SELECT  tran_valor FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
-    $result2 = $conn->query($mysql_query);
-
-    mysqli_close($conn);
-    ?>
-
-    <?php
-    $data_hoje = date("Y-m");
-
-    $total_despesa = 0;
-    while ($row = $result->fetch_assoc()) {
-        $total_despesa = $total_despesa + $row['tran_valor'];
-    }
-
-    $total_receita = 0;
-    while ($row = $result2->fetch_assoc()) {
-        $total_receita = $total_receita + $row['tran_valor'];
-    }
-
-    $saldo_atual = $total_receita - $total_despesa;
-
     ?>
     <section id="interface" style="margin-left:300px">
         <div class="navigation">

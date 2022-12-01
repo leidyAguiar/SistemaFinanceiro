@@ -3,7 +3,34 @@
 session_start();
 require_once('connection.php');
 require_once("config.php");
+require_once("enum.php");
 
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['enviar'])) {
+
+        $con_msg = $_POST['msg'];
+        $con_titulo = $_POST['titulo'];
+        $uso_id = $_SESSION['uso_id'];
+
+        $sql = "INSERT INTO contatos (uso_id, con_msg, con_titulo) VALUES ('$uso_id', '$con_msg', '$con_titulo')";
+
+        if (mysqli_query($conn, $sql)) {
+            echo "Mensagem enviada com sucesso!";
+        } else {
+            echo "Erro ao enviar mensagem: " . mysqli_error($conn);
+        }
+    }
+
+    mysqli_close($conn);
+
+    header("location: dashboard.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,16 +67,17 @@ require_once("config.php");
                 <p>Por favor, preencha os campos para que a mensagem seja enviada</p>
                 <div>
                     <form method="post">
+                        </br>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            <label for="titulo" class="form-label">Titulo</label>
+                            <input class="form-control" id="titulo" name="titulo" type="text"/>
                         </div>
                         </br>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Mensagem</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label for="msg" class="form-label">Mensagem</label>
+                            <textarea class="form-control" id="msg" name="msg" rows="3"></textarea>
                         </div>
-                        <br/>
+                        <br />
                         <input type="submit" name="enviar" value="Enviar" class="btn btn-primary w100">
                     </form>
                 </div>

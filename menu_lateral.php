@@ -1,3 +1,11 @@
+<?php
+require_once("enum.php");
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
+$tipo_usuario = $_SESSION["tipo_usuario"];
+?>
 <section id="menu">
     <div class="logo">
         <img src="./img/logoDinheiro.png" alt="">
@@ -30,9 +38,22 @@
         <li>
             <a href="./receitas.php"><i class="las la-piggy-bank"></i>Receitas</a>
         </li>
-        <li>
-            <a href="./contato_usuario.php"><i class="las la-comment-alt"></i>Contato</a>
-        </li>
+        <?php
+        if ($tipo_usuario == TipoUsuario::ADMIN->value) {
+        ?>
+            <li>
+                <a href="./administrador.php"><i class="las la-comment-alt"></i>Mensagens</a>
+            </li>
+        <?php
+        } else {
+        ?>
+            <li>
+                <a href="./contato_usuario.php"><i class="las la-comment-alt"></i>Contato</a>
+            </li>
+        <?php
+        }
+        ?>
+
         <li>
             <a href="./alterar_dados_cadastrais.php"><i class="las la-cog"></i>Configurações</a>
         </li>

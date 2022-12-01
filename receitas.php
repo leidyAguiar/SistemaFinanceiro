@@ -3,6 +3,7 @@
 session_start();
 require_once("enum.php");
 require_once("config.php");
+require_once('connection.php');
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   header("location: login.php");
@@ -16,7 +17,6 @@ if (isset($_POST['mes_ano'])) {
   $data = explode('-', $_POST['mes_ano']);
 }
 
-require_once('connection.php');
 $mysql_query = "SELECT  tran_id, tran_data, tran_valor, tran_descricao, tipo_id FROM transacao WHERE uso_id = {$_SESSION['uso_id']} AND tipo_id = 2 
 AND YEAR(tran_data) = {$data[0]} AND MONTH(tran_data) = {$data[1]}";
 
