@@ -233,6 +233,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <a class="btn btn-secondary" href="dashboard.php">Cancelar</a>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

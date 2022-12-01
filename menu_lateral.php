@@ -31,6 +31,9 @@
             <a href="./receitas.php"><i class="las la-piggy-bank"></i>Receitas</a>
         </li>
         <li>
+            <a href="./contato.php"><i class="las la-comment-alt"></i>Contato</a>
+        </li>
+        <li>
             <a href="./alterar_dados_cadastrais.php"><i class="las la-cog"></i>Configurações</a>
         </li>
         <li>

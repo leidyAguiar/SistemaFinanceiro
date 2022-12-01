@@ -47,45 +47,45 @@ mysqli_close($conn);
 <body>
   <?php require("menu_lateral.php"); ?>
   <div class="container" style="margin-left:300px">
-    <div class="row content">
-      <h2 class="signin-text mb-3">Receitas</h2>
-      <p>Listagem de receitas cadastradas.</p>
-      <hr>
-      <form class="data" method="post">
-        <h4 class="tituloData">Selecione uma data</h4>
-        <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
-        <input type="submit" value="buscar">
-      </form>
+      <div class="row content">
+        <h2 class="signin-text mb-3">Receitas</h2>
+        <p>Listagem de receitas cadastradas.</p>
+        <hr>
+        <form class="data" method="post">
+          <h4 class="tituloData">Selecione uma data</h4>
+          <input type="month" id="mes_ano" name="mes_ano" value="<?= $dataCompleta ?>">
+          <input type="submit" value="buscar">
+        </form>
 
-      <br></br>
-      <div class="float-right p-1">
-        <a href="./insert_receita.php"><button type="button" class="btn btn-primary-acao">+ Novo</button></a>
-      </div>
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr class="table-info" style="text-align:center">
-            <th scope="col" style="width: 5%;">#</th>
-            <th scope="col">Descrição</th>
-            <th scope="col" style="width: 20%;">Data Transação</th>
-            <th scope="col" style="width: 15%;">Valor Transação</th>
-            <th scope="col" style="width: 25%;">Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php while ($row = $result->fetch_assoc()) { ?>
-            <tr>
-              <td style="text-align:center"><?= $row['tran_id']; ?></td>
-              <td style="text-align:center"><?= $row['tran_descricao']; ?></td>
-              <td style="text-align:center"><?= date("d/m/Y", strtotime($row['tran_data'])); ?></td>
-              <td style="text-align:center">R$ <?= number_format($row['tran_valor'], 2, ',', '.'); ?></td>
-              <td style="text-align:center">
-                <a href="edit_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
-                <a href="delete_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
-              </td>
+        <br></br>
+        <div class="float-right p-1">
+          <a href="./insert_receita.php"><button type="button" class="btn btn-primary-acao">+ Novo</button></a>
+        </div>
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr class="table-info" style="text-align:center">
+              <th scope="col" style="width: 5%;">#</th>
+              <th scope="col">Descrição</th>
+              <th scope="col" style="width: 20%;">Data Transação</th>
+              <th scope="col" style="width: 15%;">Valor Transação</th>
+              <th scope="col" style="width: 25%;">Ação</th>
             </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            <?php while ($row = $result->fetch_assoc()) { ?>
+              <tr>
+                <td style="text-align:center"><?= $row['tran_id']; ?></td>
+                <td style="text-align:center"><?= $row['tran_descricao']; ?></td>
+                <td style="text-align:center"><?= date("d/m/Y", strtotime($row['tran_data'])); ?></td>
+                <td style="text-align:center">R$ <?= number_format($row['tran_valor'], 2, ',', '.'); ?></td>
+                <td style="text-align:center">
+                  <a href="edit_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-primary-acao">Editar</button></a>
+                  <a href="delete_receita.php?tran_id=<?= $row['tran_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
+                </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
   </div>
 </body>
