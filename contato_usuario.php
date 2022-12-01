@@ -70,12 +70,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </br>
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Titulo</label>
-                            <input class="form-control" id="titulo" name="titulo" type="text"/>
+                            <input class="form-control" required id="titulo" name="titulo" type="text"/>
                         </div>
                         </br>
                         <div class="mb-3">
                             <label for="msg" class="form-label">Mensagem</label>
-                            <textarea class="form-control" id="msg" name="msg" rows="3"></textarea>
+                            <textarea class="form-control" required id="msg" name="msg" rows="3"></textarea>
                         </div>
                         <br />
                         <input type="submit" name="enviar" value="Enviar" class="btn btn-primary w100">
