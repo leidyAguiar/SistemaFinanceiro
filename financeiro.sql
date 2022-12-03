@@ -138,7 +138,11 @@ INSERT INTO `transacao` (`tran_id`, `tipo_id`, `uso_id`, `tran_data`, `tran_valo
 (3, 1, 1, '2022-11-25 00:00:00', 100, 'Amazon Prime'),
 (4, 1, 1, '2022-12-01 00:00:00', 20, 'Uber'),
 (5, 1, 1, '2022-12-03 00:00:00', 80, 'mercantil'),
-(6, 1, 1, '2022-12-02 00:00:00', 100, 'aaa');
+(6, 1, 1, '2022-12-02 00:00:00', 100, 'aaa'),
+(8, 2, 3, '2022-12-02 00:00:00', 1000, 'salário'),
+(9, 1, 3, '2022-12-02 00:00:00', 100, 'amazon'),
+(10, 1, 3, '2022-12-02 00:00:00', 80, 'porção'),
+(11, 1, 3, '2022-12-03 00:00:00', 20, 'bebida');
 
 -- --------------------------------------------------------
 
@@ -240,7 +244,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de tabela `transacao`
 --
 ALTER TABLE `transacao`
-  MODIFY `tran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
