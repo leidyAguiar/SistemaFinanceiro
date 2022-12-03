@@ -1,7 +1,24 @@
 <?php
+
 session_start();
-require_once("connection.php");
+require_once("enum.php");
 require_once("config.php");
+require_once('connection.php');
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
+if ($_SESSION["tipo_usuario"] != TipoUsuario::ADMIN->value) {
+    header("location: dashboard.php");
+    exit;
+}
+
+$mysql_query = "SELECT con_id, con.uso_id, con_msg, con_titulo, con_lida, uso_nome FROM contatos as con INNER JOIN usuario as uso on uso.uso_id = con.uso_id";
+
+$result = $conn->query($mysql_query);
+
+mysqli_close($conn);
 ?>
 
 
@@ -46,18 +63,27 @@ require_once("config.php");
                 <thead>
                     <tr class="table-info" style="text-align:center">
                         <th scope="col" style="width: 25%;">Usuário</th>
+                        <th scope="col">Título</th>
                         <th scope="col">Mensagem</th>
+                        <th scope="col">Lida</th>
                         <th scope="col" style="width: 25%;">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="text-align:center"></td>
-                        <td style="text-align:center"></td>
-                        <td style="text-align:center">
-                            <a href="#"><button type="button" class="btn btn-danger">Excluir</button></a>
-                        </td>
-                    </tr>
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                        <tr>
+                            <td style="text-align:center"><?php echo $row['uso_nome']; ?></td>
+                            <td style="text-align:center"><?php echo $row['con_msg']; ?></td>
+                            <td style="text-align:center"><?php echo $row['con_titulo']; ?></td>
+                            <td style="text-align:center"><?php echo $row['con_lida'] == "1" ? "Sim": "Não"; ?></td>
+                            <td style="text-align:center">
+                            <?php if ($row['con_lida'] == "0") { ?>
+                                <a href="lida_msg.php?con_id=<?php echo $row['con_id']; ?>"><button type="button" class="btn btn-primary-acao">Lida</button></a>
+                            <?php } ?>
+                                <a href="delete_msg.php?con_id=<?php echo $row['con_id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

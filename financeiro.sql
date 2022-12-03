@@ -30,6 +30,10 @@ CREATE DATABASE financeiro;
 
 USE financeiro;
 
+--
+-- Estrutura da tabela `contatos`
+--
+
 CREATE TABLE `contatos` (
   `con_id` int(11) NOT NULL,
   `uso_id` int(11) NOT NULL,
@@ -37,6 +41,14 @@ CREATE TABLE `contatos` (
   `con_titulo` varchar(50) NOT NULL,
   `con_lida` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `contatos`
+--
+
+INSERT INTO `contatos` (`con_id`, `uso_id`, `con_msg`, `con_titulo`, `con_lida`) VALUES
+(7, 3, 'Olá, Boa noite, testando mensagem.', 'Dúvidas', 1),
+(8, 3, 'Tive Dúvidas nas despesas! Me ajuda!!!!', 'Despesas', 0);
 
 -- --------------------------------------------------------
 
@@ -61,7 +73,7 @@ CREATE TABLE `endereco` (
 
 INSERT INTO `endereco` (`end_id`, `uso_id`, `end_num`, `end_bairro`, `end_logradouro`, `end_cep`, `end_cidade`, `end_uf`) VALUES
 (1, 1, 75, 'Vila Paulo Roberto', 'Rua Teresina', '19046-230', 'Presidente Prudente', 'sp'),
-(2, 2, 100, 'Bobo bobo', 'Rua do bobo', '7777777', 'Bobo', 'ce');
+(3, 3, 102, 'São Francisco', 'Rua dos Baianos', '19160-000', 'ÁLVARES MACHADO', 'sp');
 
 -- --------------------------------------------------------
 
@@ -148,7 +160,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`uso_id`, `uso_nome`, `uso_email`, `uso_senha`, `tus_id`) VALUES
 (1, 'admin', 'admin@gmail.com', '$2y$10$EEgGRPcfKYZPGTtxpVo6VeIXfdT.iiByVvq39xTi.TO.//XNTlqcu', 1),
-(2, 'comum', 'comum@gmail.com', '$2y$10$ZtYuYYkS.VKUlt8.ue.FY.whcomtzt1Hg1rq4c9aNKd7q24ltlVZa', 2);
+(3, 'usuario', 'usuario@gmail.com', '$2y$10$5DK0L3hZoXbEvYpcOxwsDOPMVoF4W7YjS13wixvzAYzk96WPm9sW.', 2);
 
 --
 -- Índices para tabelas despejadas
@@ -204,13 +216,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `contatos`
 --
 ALTER TABLE `contatos`
-  MODIFY `con_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `con_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_transacao`
@@ -234,7 +246,7 @@ ALTER TABLE `transacao`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `uso_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `uso_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
