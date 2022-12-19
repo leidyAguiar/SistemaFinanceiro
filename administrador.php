@@ -73,8 +73,8 @@ mysqli_close($conn);
                     <?php while ($row = $result->fetch_assoc()) { ?>
                         <tr>
                             <td style="text-align:center"><?php echo $row['uso_nome']; ?></td>
-                            <td style="text-align:center"><?php echo $row['con_msg']; ?></td>
                             <td style="text-align:center"><?php echo $row['con_titulo']; ?></td>
+                            <td style="text-align:center"><?php echo $row['con_msg']; ?></td>
                             <td style="text-align:center"><?php echo $row['con_lida'] == "1" ? "Sim": "Não"; ?></td>
                             <td style="text-align:center">
                             <?php if ($row['con_lida'] == "0") { ?>
